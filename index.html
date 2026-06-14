@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأندلس التعليمية الشاملة - الصف السابع RWS</title>
+    <title>منصة الأندلس الذكية التفاعلية - الصف السابع RWS</title>
     <style>
         :root {
             --primary: #1a365d;
@@ -59,6 +59,7 @@
         .card.wrong-style { background-color: #fff5f5 !important; border-right-color: var(--danger) !important; }
         .result-panel { display: none; background: #fff; border: 2px solid var(--success); padding: 25px; border-radius: 12px; margin-top: 25px; }
         .error-log { background: #f7fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 15px; text-align: right; }
+        .ai-tip { background-color: #fffaf0; border-left: 4px solid var(--warning); padding: 10px; margin-top: 8px; border-radius: 6px; font-size: 0.9rem; color: #7b341e; }
         .badge { background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; margin-right: 5px; color: var(--primary); font-weight: bold; }
     </style>
 </head>
@@ -67,7 +68,7 @@
 <div class="container">
     <header>
         <h1>مدارس الأندلس الأهلية (بنات)</h1>
-        <p>المنصة الموحدة للمراجعة النهائية والاختبارات التفاعلية الشاملة - الصف السابع RWS</p>
+        <p>المنصة الذكية للمراجعة النهائية مدعومة بموجه الأخطاء الذكي الافتراضي - الصف السابع RWS</p>
     </header>
 
     <div class="card" style="border-right-color: var(--warning);">
@@ -81,6 +82,7 @@
         <button class="tab-btn" onclick="switchTab(event, 'tab3')">🎯 3. الاختبار التأكيدي (38 سؤال)</button>
     </div>
 
+    <!-- TAB 1: الشرح التفصيلي والمترجم -->
     <div id="tab1" class="tab-content active">
         <div class="card">
             <h3>مرحباً بكِ في دليل التفوق الشامل! 🌟</h3>
@@ -95,11 +97,6 @@
             <div class="explanation-box" style="background-color: #f7fafc; border-right-color: var(--secondary);">
                 <strong>الاقتراحات والطلبات:</strong> عند رؤية جمل تبدأ بـ <code>Let's</code> يُستخدم الفعل <code>suggested</code> ويأتي بعده مباشرة الفعل مضافاً له <code>-ing</code>. للطلبات المهذبة والأوامر نستخدم <code>asked + to + الفعل المجرد</code>.
             </div>
-            <strong>🔑 مفاتيح الحل في الامتحان (Exam Clues):</strong>
-            <ul>
-                <li>وجود كلمة <code>said that</code> أو <code>asked</code> ➔ ابحثي في الخيارات عن صيغة الماضي أو <code>would</code>.</li>
-                <li>وجود كلمة <code>suggested</code> ➔ اختاري فوراً الكلمة التي تنتهي بـ <code>ing</code>.</li>
-            </ul>
         </div>
 
         <h3 class="grammar-title">2. أفعال التخمين والاحتمالية (Modal Verbs of Speculation)</h3>
@@ -107,11 +104,7 @@
             <p>نستخدم أفعالاً مساعدة مخصصة للتعبير عن مدى ثقتنا في استنتاج شيء ما في الوقت الحاضر:</p>
             <table class="vocab-table">
                 <thead>
-                    <tr>
-                        <th>الفعل</th>
-                        <th>المعنى والاستخدام</th>
-                        <th>العلامة السحرية في السؤال (Exam Clue)</th>
-                    </tr>
+                    <tr><th>الفعل</th><th>المعنى والاستخدام</th><th>العلامة السحرية في السؤال (Exam Clue)</th></tr>
                 </thead>
                 <tbody>
                     <tr><td><strong>Must</strong></td><td>لا بد أنه.. (متأكد بنسبة 90% أن الأمر صحيح)</td><td>وجود دليل قوي أو إثبات (مثل: يرتدي الزي المدرسي).</td></tr>
@@ -127,32 +120,10 @@
                 تستخدم للتعبير عن مواقف تخيلية أو ندم في الماضي لو حدثت لتغيرت النتيجة تماماً.
                 <br><strong>قاعدتها الثابتة:</strong> <span style="direction: ltr; display: inline-block;">If + had + V3 ➔ would have + V3</span>
             </div>
-            <strong>💡 مثال امتحاني:</strong> If we had studied harder, we would have passed.
-        </div>
-
-        <h3 class="grammar-title">4. كلمات التهجئة الإملائية الصحيحة (Orthography)</h3>
-        <div class="card">
-            <p>إليكِ الكلمات العشر المقررة في المراجعة مع حيل إملائية لحفظ حروفها الصحيحة لتجنب الخداع في الاختبار الاختياري:</p>
-            <table class="vocab-table">
-                <thead>
-                    <tr><th>الكلمة الصحيحة</th><th>المعنى بالعربية</th><th>حيلة لتذكر السبلنج الصحيح</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>stationery</strong></td><td>أدوات مكتبية</td><td>تنتهي بحروف <code>ery</code> تذكري الحرف <strong>e</strong> مثل كلمة pap<strong>e</strong>r (ورق).</td></tr>
-                    <tr><td><strong>charity</strong></td><td>جمعية خيرية</td><td>تبدأ بكلمة <code>chair</code> (كرسي)، فالجمعيات تدعم الفقراء بأساسيات المنزل.</td></tr>
-                    <tr><td><strong>chemist</strong></td><td>صيدلي</td><td>تنطق كاف ولكن كتابتها تبدأ بـ <code>ch</code> وتنتهي بـ <code>ist</code> مثل صانع الأسنان dentist.</td></tr>
-                    <tr><td><strong>bakery</strong></td><td>مخبز</td><td>مشتقة من الفعل الأساسي <code>bake</code> (يخبز) مضافاً له ry.</td></tr>
-                    <tr><td><strong>butcher</strong></td><td>جزار / ملحمة</td><td>تحتوي على حرف <code>t</code> صامت لا ينطق قبل ch، التهجئة b-u-t-c-h-e-r.</td></tr>
-                    <tr><td><strong>greengrocer</strong></td><td>بائع خضار</td><td>مكونة من شقين دمجاً معاً: لون الخضار green ثم كلمة grocer.</td></tr>
-                    <tr><td><strong>newsagent</strong></td><td>بائع صحف</td><td>مكونة من دمج كلمتين: الأخبار news ثم كلمة العميل/الوكيل agent.</td></tr>
-                    <tr><td><strong>electrical</strong></td><td>كهربائي</td><td>تأكدي من وجود حرف c وليس s في مقطع electri.</td></tr>
-                    <tr><td><strong>supermarket</strong></td><td>سوبرماركت</td><td>تبدأ بـ super وليس sopar.</td></tr>
-                    <tr><td><strong>clothes</strong></td><td>ملابس</td><td>تنتهي بالمقطع th ثم es، الخيار الخادع يحذف e. الصحيح clothes.</td></tr>
-                </tbody>
-            </table>
         </div>
     </div>
 
+    <!-- TAB 2: الاختبار التجريبي الشامل (38 سؤالاً) -->
     <div id="tab2" class="tab-content">
         <form id="quiz-form-main">
             <h3 class="grammar-title">أولاً: أسئلة القواعد النحوية (Grammar 1-32)</h3>
@@ -209,21 +180,21 @@
                 <div class="options-list">
                     <label class="option-item"><input type="radio" name="mq13" value="a"> a) will have</label><label class="option-item"><input type="radio" name="mq13" value="b"> b) would</label><label class="option-item"><input type="radio" name="mq13" value="c"> c) would have</label><label class="option-item"><input type="radio" name="mq13" value="d"> d) had</label>
                 </div></div>
-            <div class="card" id="main-q14"><div class="question-text"><span class="badge">Q14</span> We would have visited you if we ________ your address.</div>
+            <div class="card" id="main-q14"><div class="question-text"><span class="badge">Q14</span> We would have visited you if we ________ known your address.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq14" value="a"> a) had known</label><label class="option-item"><input type="radio" name="mq14" value="b"> b) knew</label><label class="option-item"><input type="radio" name="mq14" value="c"> c) know</label><label class="option-item"><input type="radio" name="mq14" value="d"> d) have known</label>
+                    <label class="option-item"><input type="radio" name="mq14" value="a"> a) had</label><label class="option-item"><input type="radio" name="mq14" value="b"> b) knew</label><label class="option-item"><input type="radio" name="mq14" value="c"> c) know</label><label class="option-item"><input type="radio" name="mq14" value="d"> d) would</label>
                 </div></div>
             <div class="card" id="main-q15"><div class="question-text"><span class="badge">Q15</span> If Sara had saved enough money, she ________ have bought a new car.</div>
                 <div class="options-list">
                     <label class="option-item"><input type="radio" name="mq15" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq15" value="b"> b) can</label><label class="option-item"><input type="radio" name="mq15" value="c"> c) may</label><label class="option-item"><input type="radio" name="mq15" value="d"> d) would</label>
                 </div></div>
-            <div class="card" id="main-q16"><div class="question-text"><span class="badge">Q16</span> She wouldn't have felt tired if she ________ early.</div>
+            <div class="card" id="main-q16"><div class="question-text"><span class="badge">Q16</span> She wouldn't have felt tired if she ________ slept early.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq16" value="a"> a) sleeps</label><label class="option-item"><input type="radio" name="mq16" value="b"> b) slept</label><label class="option-item"><input type="radio" name="mq16" value="c"> c) had slept</label><label class="option-item"><input type="radio" name="mq16" value="d"> d) has slept</label>
+                    <label class="option-item"><input type="radio" name="mq16" value="a"> a) sleeps</label><label class="option-item"><input type="radio" name="mq16" value="b"> b) slept</label><label class="option-item"><input type="radio" name="mq16" value="c"> c) had</label><label class="option-item"><input type="radio" name="mq16" value="d"> d) has</label>
                 </div></div>
             <div class="card" id="main-q17"><div class="question-text"><span class="badge">Q17</span> If she had finished her homework, she ________ have watched the movie.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq17" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq17" value="b"> b) could</label><label class="option-item"><input type="radio" name="mq17" value="c"> c) must</label><label class="option-item"><input type="radio" name="mq17" value="d"> d) would</label>
+                    <label class="option-item"><input type="radio" name="mq17" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq17" value="b"> b) has</label><label class="option-item"><input type="radio" name="mq17" value="c"> c) must</label><label class="option-item"><input type="radio" name="mq17" value="d"> d) would</label>
                 </div></div>
             <div class="card" id="main-q18"><div class="question-text"><span class="badge">Q18</span> She drinks a glass of milk ________ morning before school.</div>
                 <div class="options-list">
@@ -247,23 +218,23 @@
                 </div></div>
             <div class="card" id="main-q23"><div class="question-text"><span class="badge">Q23</span> He ran ________ fast that he won the race.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq23" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq23" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq23" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq23" value="d"> d) too</label>
+                    <label class="option-item"><input type="radio" name="mq23" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq23" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq23" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq23" value="d"> d) too</label>
                 </div></div>
             <div class="card" id="main-q24"><div class="question-text"><span class="badge">Q24</span> She is ________ a smart student.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq24" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq24" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq24" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq24" value="d"> d) identical</label>
+                    <label class="option-item"><input type="radio" name="mq24" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq24" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq24" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq24" value="d"> d) identical</label>
                 </div></div>
             <div class="card" id="main-q25"><div class="question-text"><span class="badge">Q25</span> She is ________ a talented actress that everyone clapped for her.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq25" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq25" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq25" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq25" value="d"> d) more</label>
+                    <label class="option-item"><input type="radio" name="mq25" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq25" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq25" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq25" value="d"> d) more</label>
                 </div></div>
             <div class="card" id="main-q26"><div class="question-text"><span class="badge">Q26</span> The bag is ________ expensive that I can't buy it.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq26" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq26" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq26" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq26" value="d"> d) too</label>
+                    <label class="option-item"><input type="radio" name="mq26" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq26" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq26" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq26" value="d"> d) many</label>
                 </div></div>
             <div class="card" id="main-q27"><div class="question-text"><span class="badge">Q27</span> It was ________ a cold day that we stayed at home.</div>
                 <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq27" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq27" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq27" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq27" value="d"> d) most</label>
+                    <label class="option-item"><input type="radio" name="mq27" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq27" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq27" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq27" value="d"> d) most</label>
                 </div></div>
             <div class="card" id="main-q28"><div class="question-text"><span class="badge">Q28</span> The game was ________ exciting that we didn't want it to end.</div>
                 <div class="options-list">
@@ -325,6 +296,7 @@
         </div>
     </div>
 
+    <!-- TAB 3: الاختبار التأكيدي (38 سؤالاً مماثلاً وموازياً تماماً) -->
     <div id="tab3" class="tab-content">
         <form id="quiz-form-extra">
             <h3 class="grammar-title">أولاً: أسئلة القواعد التأكيدية الإضافية (1-32)</h3>
@@ -499,7 +471,6 @@
 </div>
 
 <script>
-    // الإجابات الصحيحة لجميع الأسئلة الـ 38 للاختبارين
     const mainAnswers = {
         mq1: "d", mq2: "c", mq3: "c", mq4: "c", mq5: "a", mq6: "b", mq7: "b", mq8: "a", mq9: "c", mq10: "b",
         mq11: "a", mq12: "d", mq13: "c", mq14: "a", mq15: "d", mq16: "c", mq17: "d", mq18: "a", mq19: "c", mq20: "a",
@@ -511,7 +482,49 @@
         eq1: "d", eq2: "c", eq3: "c", eq4: "c", eq5: "a", eq6: "b", eq7: "b", eq8: "a", eq9: "c", eq10: "b",
         eq11: "a", eq12: "d", eq13: "c", eq14: "a", eq15: "d", eq16: "c", eq17: "d", eq18: "a", eq19: "c", eq20: "a",
         eq21: "c", eq22: "c", eq23: "a", eq24: "a", eq25: "b", eq26: "a", eq27: "a", eq28: "a", eq29: "b", eq30: "a",
-        eq31: "c", eq32: "a", eq33: "c", eq34: "b", eq35: "c", eq36: "b", eq37: "b", eq38: "c"
+        eq31: "c", eq32: "a", eq33: "c", mq34: "b", mq35: "c", eq36: "b", eq37: "b", eq38: "c"
+    };
+
+    // قاعدة بيانات الموجه الذكي لتفسير الخطأ بناءً على المنهج المدرسي
+    const aiExplanations = {
+        "1": "💡 التوجيه الذكي: في الكلام المنقول (Reported Speech)، نرجع بالزمن خطوة للوراء؛ لذا تتحول (will) دائماً إلى (would).",
+        "2": "💡 التوجيه الذكي: عند نقل الأسئلة، نغير زمن الفعل للمشتق الماضي الكلي؛ فتصبح (will) هي (would).",
+        "3": "💡 التوجيه الذكي: عند نقل الطلبات المهذبة والأوامر مثل (Please)، نربط بـ (to + الفعل المجرد).",
+        "4": "💡 التوجيه الذكي: تذكري دائماً أن الفعل (suggested) يجب أن يتبعه مباشرة فعل مضاف له (-ing).",
+        "5": "💡 التوجيه الذكي: الاقتراح بـ (Let's) عند نقله يأخذ صيغة اسم الفاعل المتصل بـ (-ing) بعد فعل الاقتراح.",
+        "6": "💡 التوجيه الذكي: بعد الفعل (suggested) نختار دائماً الفعل المنتهي بـ (-ing) بدون استخدام (to).",
+        "7": "💡 التوجيه الذكي: (Modals of Speculation) عندما نكون متأكدين أن الشيء مستحيل (لأنه في المنزل)، نستخدم (can't).",
+        "8": "💡 التوجيه الذكي: وجود العبارة الدلالية (I'm not sure) تعني أن الاحتمال 50%، والفعل الصحيح لها هو (might).",
+        "9": "💡 التوجيه الذكي: جمل عدم المعرفة والشك مثل (I don't know) تتطلب استخدام فعل الاحتمالية الضعيفة (might).",
+        "10": "💡 التوجيه الذكي: وجود دليل قاطع مرئي (يرتدي الزي المدرسي) يعني أننا شبه متأكدين بنسبة 90%؛ فنستخدم (must).",
+        "11": "💡 التوجيه الذكي: المطعم مغلق صراحة (closed)؛ فمن المستحيل عقلياً أن يكون مفتوحاً الآن، لذا الخيار هو (can't).",
+        "12": "💡 التوجيه الذكي: الطقس بارد جداً (very cold)؛ فمن المستحيل منطقياً أن نكون في فصل الصيف، لذا نختار (can't).",
+        "13": "💡 التوجيه الذكي: القاعدة الشرطية الثالثة (Third Conditional): شق الجواب يتكون من (would have + V3).",
+        "14": "💡 التوجيه الذكي: الشق الذي يلي (If) في الحالة الشرطية الثالثة يجب أن يكون ماضياً تاماً بصيغة (had + V3).",
+        "15": "💡 التوجيه الذكي: اكتمال أداة الشرط مع الماضي التام (had saved) يستلزم وضع (would) في شق جواب الشرط المكتمل بـ (have + V3).",
+        "16": "💡 التوجيه الذكي: تركيب الماضي التام بعد أداة الشرط (if) يتكون حصرياً من الفعل المساعد (had) متبوعاً بالتصريف الثالث.",
+        "17": "💡 التوجيه الذكي: شق النتيجة في الحالة الشرطية الثالثة الخيالية في الماضي يستخدم التركيبة الثابتة (would have).",
+        "18": "💡 التوجيه الذكي: نستخدم (every) قبل الأسماء المفردة الزمنية للدلالة على التكرار الدوري المستمر.",
+        "19": "💡 التوجيه الذكي: الجمل المنفية بـ (didn't) تأخذ دائماً أدوات الربط التي تبدأ بـ (any)؛ فالصحيح هو (anything).",
+        "20": "💡 التوجيه الذكي: نستخدم الأداة (any) في الجمل المنفية صراحة بوجود أداة النفي (can't).",
+        "21": "💡 التوجيه الذكي: عند نفي الفعل بـ (didn't)، نستخدم أداة المكان المنفي (anywhere) وليس (somewhere).",
+        "22": "💡 التوجيه الذكي: في الجمل الإثباتية العادية التي تفيد الرغبة في العطاء، نستخدم الضمير غير المحدد (something).",
+        "23": "💡 التوجيه الذكي: نستخدم الأداة (so) إذا جاء بعدها مباشرة صفة أو ظرف مجرد متبوعاً بكلمة (that).",
+        "24": "💡 التوجيه الذكي: نستخدم (such) عندما يتبعها أداة نكرة (a/an) ثم صفة واسم موصوف.",
+        "25": "💡 التوجيه الذكي: المقطع (a talented actress) عبارة عن صفة واسم؛ والقاعدة تنص على سبقه بـ (such).",
+        "26": "💡 التوجيه الذكي: كلمة (expensive) صفة مجردة متبوعة بـ (that)؛ والقاعدة الذهبية تفرض استخدام (so).",
+        "27": "💡 التوجيه الذكي: التعبير (a cold day) يمثل (صفة + اسم)، والأداة المقررة لتعزيز هذا النمط هي (such).",
+        "28": "💡 التوجيه الذكي: الصفات المنفردة غير المتبوعة باسم مثل (exciting) نضع قبلها دائماً (so).",
+        "29": "💡 التوجيه الذكي: عبارات التمني (If only) للتعبير عن الحاضر تتطلب تحويل الفعل للماضي البسيط؛ فالصحيح (had).",
+        "30": "💡 التوجيه الذكي: التمني عن شيء حدث في الماضي (yesterday) يتطلب استخدام الماضي التام (had + V3).",
+        "31": "💡 التوجيه الذكي: التمني والندم على حافلة فاتت في الماضي يتطلب استخدام زمن الماضي التام (had).",
+        "32": "💡 التوجيه الذكي: استخدام (If only) للندم على حدث ماضٍ يتطلب تركيباً نحوياً بالماضي التام (had checked).",
+        "33": "💡 التوجيه الذكي: الكلمة الصحيحة للمسرح الذي يقف عليه الممثلون لأداء العرض هي (stage).",
+        "34": "💡 التوجيه الذكي: الكلمة الصحيحة للعلم الوطني الذي يرفعه المواطنون في الشوارع هي (flag).",
+        "35": "💡 التوجيه الذكي: الفعل الصحيح لتقديم ومنح الأموال للجمعيات الخيرية ومساعدة الفقراء هو (donate).",
+        "36": "💡 التوجيه الذكي: التهجئة الصحيحة للأدوات المكتبية هي (stationery) بحرف الـ (e) مثل كلمة paper.",
+        "37": "💡 التوجيه الذكي: كلمة جمعية خيرية تبدأ دائماً بالحرفين (ch) وتنطق شين؛ لذا السبيلنج الصحيح هو (charity).",
+        "38": "💡 التوجيه الذكي: كلمة صيدلي تنطق كاف ولكنها تكتب (ch) في البداية؛ فالتهجئة المعتمدة هي (chemist)."
     };
 
     let reportData = { main: "", extra: "" };
@@ -537,13 +550,18 @@
         const answersList = type === 'main' ? mainAnswers : extraAnswers;
         let score = 0;
         let total = Object.keys(answersList).length;
-        let logHTML = "<strong>📋 تفصيل تحليل الأخطاء والتغذية الراجعة الفورية:</strong><br><br>";
+        let logHTML = "<strong>📋 تفصيل تحليل الأخطاء مدعوماً بالموجه الذكي الافتراضي:</strong><br><br>";
         reportData[type] = `نوع التقييم: ${type === 'main' ? 'الاختبار التجريبي الشامل' : 'الاختبار التأكيدي الإضافي'}\n\n`;
 
         for (let id in answersList) {
             const card = document.getElementById(`${type}-${id.substring(1)}`);
             const selected = document.querySelector(`input[name="${id}"]:checked`);
+            const qNum = id.substring(2);
             
+            // حذف أي تفسير قديم مضاف تلافياً للتكرار
+            const oldTip = card ? card.querySelector('.ai-tip') : null;
+            if (oldTip) oldTip.remove();
+
             if (card) card.classList.remove("correct-style", "wrong-style");
 
             if (selected && selected.value === answersList[id]) {
@@ -553,8 +571,18 @@
                 if (card) card.classList.add("wrong-style");
                 let choice = selected ? selected.value.toUpperCase() : "لم يتم الاختيار";
                 let correctStr = answersList[id].toUpperCase();
-                logHTML += `❌ في السؤال <strong>(${id.substring(2)})</strong>: إجابتكِ هي (${choice}). الحل الصحيح المعتمد هو <strong>(${correctStr})</strong>.<br>`;
-                reportData[type] += `❌ خطأ في السؤال رقم (${id.substring(2)})\n   - إجابة الطالبة المعطاة: (${choice})\n   - الحل الصحيح المعتمد: (${correctStr})\n\n`;
+                let tipText = aiExplanations[qNum] || "💡 تذكري مراجعة القاعدة الخاصة بهذا الدرس جيداً.";
+                
+                // إضافة التوجيه الذكي بصرياً أسفل الكارت مباشرة لمساعدة الطالبة فوراً
+                if (card) {
+                    let tipDiv = document.createElement('div');
+                    tipDiv.className = 'ai-tip';
+                    tipDiv.innerText = tipText;
+                    card.appendChild(tipDiv);
+                }
+
+                logHTML += `❌ <strong>السؤال (${qNum})</strong>: إجابتكِ هي (${choice}). الحل الصحيح هو <strong>(${correctStr})</strong>.<br><span style='color: #dd6b20;'>${tipText}</span><br><br>`;
+                reportData[type] += `❌ خطأ في السؤال رقم (${qNum})\n   - إجابة الطالبة: (${choice})\n   - الحل الصحيح: (${correctStr})\n   - ${tipText}\n\n`;
             }
         }
 
@@ -575,7 +603,7 @@
     function downloadTxtReport(type) {
         const studentName = document.getElementById("student-name").value.trim();
         let fileText = `=======================================\n`;
-        fileText += `         تقرير منصة مدارس الأندلس التفاعلية        \n`;
+        fileText += `         تقرير منصة مدارس الأندلس الذكية        \n`;
         fileText += `=======================================\n\n`;
         fileText += `اسم الطالبة الثلاثي: ${studentName}\n`;
         fileText += `${scoreData[type]}\n`;
@@ -586,7 +614,7 @@
         const blob = new Blob([fileText], { type: "text/plain;charset=utf-8" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = `نتيجة_${type === 'main' ? 'التجريبي' : 'التأكيدي'}_${studentName.replace(/\s+/g, '_')}.txt`;
+        link.download = `تقرير_الذكاء_الافتراضي_${studentName.replace(/\s+/g, '_')}.txt`;
         link.click();
     }
 </script>
