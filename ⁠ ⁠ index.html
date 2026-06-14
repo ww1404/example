@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المراجعة النهائية التفاعلية - الصف السابع RWS</title>
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #13c2c2;
+            --success: #52c41a;
+            --danger: #f5222d;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), #2a4d7c);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-right: 5px solid var(--secondary);
+        }
+        .explanation {
+            background-color: #e6f7ff;
+            border-right: 5px solid #1890ff;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .question {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #222;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media(min-width: 600px) {
+            .options { grid-template-columns: 1fr 1fr; }
+        }
+        .option-label {
+            background: #fafafa;
+            border: 1px solid #d9d9d9;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .option-label:hover {
+            background: #f0f5ff;
+            border-color: #adc6ff;
+        }
+        .option-label input {
+            margin-left: 10px;
+        }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #2a4d7c; }
+        .btn-success { background: var(--success); }
+        .btn-success:hover { background: #389e0d; }
+        
+        #student-info {
+            margin-bottom: 20px;
+        }
+        #student-info input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        #result-box {
+            display: none;
+            background: #f6ffed;
+            border: 2px solid #b7eb8f;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        .wrong-answer {
+            background-color: #fff1f0 !important;
+            border-color: #ffa39e !important;
+        }
+        .correct-answer {
+            background-color: #f6ffed !important;
+            border-color: #b7eb8f !important;
+        }
+        .report-text {
+            text-align: right;
+            margin-top: 15px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #d9d9d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>مدارس الأندلس الأهلية - القسم الثانوي/المتوسط بنات</h1>
+        <p>الاختبار التفاعلي الشامل والمراجعة النهائية - الصف السابع (RWS)</p>
+    </header>
+
+    <!-- بيانات الطالبة -->
+    <div class="card" id="student-info">
+        <label style="font-weight: bold; display: block; margin-bottom: 8px;">الرجاء إدخال اسم الطالبة قبل البدء:</label>
+        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا..." required>
+    </div>
+
+    <form id="quiz-form">
+
+        <!-- القسم الأول -->
+        <h2 class="section-title">1. Reported Speech (الكلام المنقول)</h2>
+        <div class="card explanation">
+            <strong>الشرح السريع:</strong> عند نقل جملة خبرية، نرجع بالزمن خطوة للوراء (تحول am/is إلى was، وتحول will إلى would). إذا رأيتِ كلمة suggested نختار فوراً الفعل المضاف له ing.
+        </div>
+
+        <div class="card" id="q1-container">
+            <div class="question">س1: My mother said, 'I will cook dinner.' $\rightarrow$ My mother said that she ________ dinner.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q1" value="a"> a) will cook</label>
+                <label class="option-label"><input type="radio" name="q1" value="b"> b) cooked</label>
+                <label class="option-label"><input type="radio" name="q1" value="c"> c) cooks</label>
+                <label class="option-label"><input type="radio" name="q1" value="d"> d) would cook</label>
+            </div>
+        </div>
+
+        <div class="card" id="q2-container">
+            <div class="question">س2: 'Let's watch a movie.' $\rightarrow$ She suggested ________ a movie.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q2" value="a"> a) watch</label>
+                <label class="option-label"><input type="radio" name="q2" value="b"> b) to watch</label>
+                <label class="option-label"><input type="radio" name="q2" value="c"> c) watching</label>
+                <label class="option-label"><input type="radio" name="q2" value="d"> d) will watch</label>
+            </div>
+        </div>
+
+        <!-- القسم الثاني -->
+        <h2 class="section-title">2. Modal Verbs of Speculation (أفعال التخمين)</h2>
+        <div class="card explanation">
+            <strong>الشرح السريع:</strong> نستخدم Must عندما نكون متأكدين بنسبة 90% من الصحة. نستخدم Can't عندما نكون متأكدين أن الشيء مستحيل. ونستخدم Might عند عدم التأكد (وجود كلمات مثل I'm not sure).
+        </div>
+
+        <div class="card" id="q3-container">
+            <div class="question">س3: I'm not sure, but the bag ________ belong to Sara.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q3" value="a"> a) might</label>
+                <label class="option-label"><input type="radio" name="q3" value="b"> b) must</label>
+                <label class="option-label"><input type="radio" name="q3" value="c"> c) can't</label>
+                <label class="option-label"><input type="radio" name="q3" value="d"> d) mustn't</label>
+            </div>
+        </div>
+
+        <div class="card" id="q4-container">
+            <div class="question">س4: The restaurant is closed. It ________ be open now.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q4" value="a"> a) can't</label>
+                <label class="option-label"><input type="radio" name="q4" value="b"> b) might</label>
+                <label class="option-label"><input type="radio" name="q4" value="c"> c) must</label>
+                <label class="option-label"><input type="radio" name="q4" value="d"> d) can</label>
+            </div>
+        </div>
+
+        <!-- القسم الثالث -->
+        <h2 class="section-title">3. Third Conditional & Quantifiers (الحالة الشرطية الثالثة والمحددات)</h2>
+        <div class="card explanation">
+            <strong>الشرح السريع:</strong> تركيب الحالة الشرطية الثالثة دائماً يتضمن (If + had + V3 , would have + V3). نستخدم any في الجمل المنفية التي تحتوي على (not / n't).
+        </div>
+
+        <div class="card" id="q5-container">
+            <div class="question">س5: The team would have won if they ________ played better.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q5" value="a"> a) would</label>
+                <label class="option-label"><input type="radio" name="q5" value="b"> b) has</label>
+                <label class="option-label"><input type="radio" name="q5" value="c"> c) had</label>
+                <label class="option-label"><input type="radio" name="q5" value="d"> d) was</label>
+            </div>
+        </div>
+
+        <div class="card" id="q6-container">
+            <div class="question">س6: I can't see ________ thing on the teacher's desk.</div>
+            <div class="options">
+                <label class="option-label"><input type="radio" name="q6" value="a"> a) any</label>
+                <label class="option-label"><input type="radio" name="q6" value="b"> b) every</label>
+                <label class="option-label"><input type="radio" name="q6" value="c"> c) no</label>
+                <label class="option-label"><input type="radio" name="q6" value="d"> d) some</label>
+            </div>
+        </div>
+
+        <!-- زر الإرسال -->
+        <button type="button" class="btn" onclick="checkAnswers()">تصحيح الاختبار وإظهار النتيجة فوراً</button>
+    </form>
+
+    <!-- صندوق النتيجة والتقرير -->
+    <div id="result-box">
+        <h2 style="color: #389e0d;">تم تصحيح الاختبار بنجاح!</h2>
+        <h3 id="score-text" style="font-size: 1.5rem; margin: 15px 0;"></h3>
+        <div id="error-report" class="report-text"></div>
+        <button type="button" class="btn btn-success" onclick="downloadResults()">⬇️ تحميل ملف النتيجة وتوثيق الأخطاء (TXT)</button>
+    </div>
+</div>
+
+<script>
+    // الإجابات النموذجية الصحيحة للمراجعة
+    const correctAnswers = {
+        q1: "d",
+        q2: "c",
+        q3: "a",
+        q4: "a",
+        q5: "c",
+        q6: "a"
+    };
+
+    // نصوص الأسئلة لاستخدامها في تقرير تحميل الملف النصي
+    const questionTexts = {
+        q1: "My mother said, 'I will cook dinner.' (Reported Speech)",
+        q2: "'Let's watch a movie.' (Suggestions)",
+        q3: "I'm not sure, but the bag... (Speculation)",
+        q4: "The restaurant is closed. It... (Speculation)",
+        q5: "The team would have won if they... (Third Conditional)",
+        q6: "I can't see... thing on the desk. (Quantifiers)"
+    };
+
+    let globalReportText = "";
+    let globalScore = "";
+
+    function checkAnswers() {
+        const studentName = document.getElementById("student-name").value.trim();
+        if (!studentName) {
+            alert("فضلاً، يرجى إدخال اسم الطالبة أولاً في أعلى الصفحة لتوثيق النتيجة!");
+            document.getElementById("student-name").focus();
+            return;
+        }
+
+        let score = 0;
+        let totalQuestions = Object.keys(correctAnswers).length;
+        let errorReportHTML = "<strong>📋 تقرير تحليل الأخطاء والنقاط الدلالية المفقودة:</strong><br><br>";
+        globalReportText = `تقرير نتيجة الطالبة: ${studentName}\nتاريخ التقييم: ${new Date().toLocaleDateString('ar-SA')}\n\n`;
+
+        for (let key in correctAnswers) {
+            const container = document.getElementById(`${key}-container`);
+            const selected = document.querySelector(`input[name="${key}"]:checked`);
+            
+            // إعادة ضبط المظهر الافتراضي قبل إعادة التلوين
+            container.classList.remove("correct-answer", "wrong-answer");
+
+            if (selected && selected.value === correctAnswers[key]) {
+                score++;
+                container.classList.add("correct-answer");
+            } else {
+                container.classList.add("wrong-answer");
+                let studentSelection = selected ? selected.value.toUpperCase() : "لم يتم الإجابة";
+                errorReportHTML += `❌ في السؤال <strong>(${key.replace('q', '')})</strong>: إجابتك هي (${studentSelection}). الإجابة الصحيحة هي <strong>(${correctAnswers[key].toUpperCase()})</strong>.<br>`;
+                globalReportText += `❌ خطأ في سؤال: ${questionTexts[key]}\n   - إجابة الطالبة: (${studentSelection})\n   - الإجابة الصحيحة: (${correctAnswers[key].toUpperCase()})\n\n`;
+            }
+        }
+
+        if (score === totalQuestions) {
+            errorReportHTML += "✨ ممتَاز ومبدعة! لقد أجبتِ على جميع الأسئلة بطريقة صحيحة ودون أي أخطاء. استمري في هذا التفوق!";
+            globalReportText += "✨ ممتاز! درجة كاملة وإجابات نموذجية خالية من الأخطاء.\n";
+        }
+
+        globalScore = `النتيجة: ${score} من أصل ${totalQuestions} (${Math.round((score/totalQuestions)*100)}%)`;
+        
+        // إظهار صندوق النتيجة وتحديثه
+        document.getElementById("score-text").innerText = `الطالبة: ${studentName} | ${globalScore}`;
+        document.getElementById("error-report").innerHTML = errorReportHTML;
+        document.getElementById("result-box").style.display = "block";
+        
+        // الانتقال التلقائي لأسفل لمشاهدة النتيجة
+        document.getElementById("result-box").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadResults() {
+        const studentName = document.getElementById("student-name").value.trim();
+        let finalFileContent = `=======================================\n`;
+        finalFileContent += `       ملف توثيق تقييم اختبار الـ RWS       \n`;
+        finalFileContent += `=======================================\n\n`;
+        finalFileContent += `اسم الطالبة: ${studentName}\n`;
+        finalFileContent += `${globalScore}\n`;
+        finalFileContent += `---------------------------------------\n\n`;
+        finalFileContent += globalReportText;
+        finalFileContent += `\n=======================================\n`;
+        finalFileContent += `مع تمنياتنا لكِ بالنجاح الدائم - مدارس الأندلس\n`;
+
+        // دالة إنشاء وتحميل الملف النصي عن طريق المتصفح مباشرة للكمبيوتر والهاتف
+        const blob = new Blob([finalFileContent], { type: "text/plain;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `نتيجة_الاختبار_${studentName.replace(/\s+/g, '_')}.txt`;
+        link.click();
+    }
+</script>
+
+</body>
+</html>
