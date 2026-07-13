@@ -3,356 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الرياضيات الشاملة | مدارس الأندلس</title>
+    <title>أداة حصر وتقييم الفرص الاستثمارية - ورشة عمل تطوير الأعمال</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cairo Font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #2b6cb0;
-            --secondary-color: #319795;
-            --bg-color: #f7fafc;
-            --correct-color: #c6f6d5;
-            --correct-border: #38a169;
-            --wrong-color: #fed7d7;
-            --wrong-border: #e53e3e;
-            --tip-bg: #feebc8;
-            --tip-color: #dd6b20;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            color: #2d3748;
+            font-family: 'Cairo', sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-        .student-info {
-            background: #edf2f7;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-        .student-info input {
-            width: 95%;
-            padding: 10px;
-            border: 2px solid #cbd5e0;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        .section-title {
-            background: #e2e8f0;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            color: #2b6cb0;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            border-right: 5px solid var(--primary-color);
-        }
-        .question-card {
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            background: #fff;
-        }
-        .question-text {
-            font-size: 17px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .options-list {
-            list-style: none;
-            padding: 0;
-        }
-        .options-list li {
-            margin-bottom: 10px;
-        }
-        .options-list label {
-            display: block;
-            padding: 10px 15px;
-            background: #f7fafc;
-            border: 1px solid #cbd5e0;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .options-list label:hover {
-            background: #edf2f7;
-        }
-        .options-list input {
-            margin-left: 10px;
-        }
-        .btn-submit {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 30px;
-        }
-        .btn-submit:hover {
-            background: #2c5282;
-        }
-        .correct-style {
-            background-color: var(--correct-color) !important;
-            border-color: var(--correct-border) !important;
-        }
-        .wrong-style {
-            background-color: var(--wrong-color) !important;
-            border-color: var(--wrong-border) !important;
-        }
-        .ai-tip {
-            background-color: var(--tip-bg);
-            border-right: 4px solid var(--tip-color);
-            color: #7b341e;
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.5;
-        }
-        .result-panel {
-            display: none;
-            background: #ebf8ff;
-            border: 2px solid #bee3f8;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-            text-align: center;
+        .grid-bg {
+            background-image: linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
+            background-size: 20px 20px;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 min-h-screen grid-bg">
 
-<div class="container">
-    <h1>📝 منصة التقييم الذكي للرياضيات</h1>
-    <h2 style="font-size: 18px; color: #4a5568;">الاختبار الشامل المطور | مدارس الأندلس الأهلية للموهوبين</h2>
+    <!-- Header Navigation -->
+    <header class="bg-gradient-to-r from-emerald-800 to-teal-950 text-white shadow-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-emerald-600 rounded-lg shadow-inner">
+                    <!-- SVG Logo Icon -->
+                    <svg class="w-8 h-8 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-wide">ورشة حصر الفرص الاستثمارية</h1>
+                    <p class="text-xs text-emerald-300">برنامج تطوير الأعمال والاستدامة التشغيلية - الهيئة العامة للغذاء والدواء</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 text-sm bg-teal-900/50 px-4 py-2 rounded-full border border-teal-700/50">
+                <span class="flex items-center gap-1">
+                    <span class="w-3 h-3 bg-emerald-400 rounded-full inline-block"></span>
+                    جاهز لحصر المبادرات لعام 2026
+                </span>
+            </div>
+        </div>
+    </header>
 
-    <div class="student-info">
-        <label style="font-weight:bold; display:block; margin-bottom:8px;">اسم الطالبة المتميزة:</label>
-        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا لتوثيق النتيجة...">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Intro Dashboard -->
+        <div class="mb-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200/80 flex flex-col lg:flex-row gap-6 justify-between items-start lg:items-center">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-800">مرحباً بك في أداة حصر المبادرات والفرص 🚀</h2>
+                <p class="text-slate-500 mt-1 max-w-2xl text-sm leading-relaxed">
+                    استخدم هذا النموذج الرقمي الموحد لتوثيق أفكار ورشة العمل. بعد تعبئة البطاقة، سيقوم النظام تلقائياً بتقييم المبادرة ووضعها في مصفوفة ترتيب الأولويات لدعم اتخاذ القرار وتجنب التداخل التنظيمي.
+                </p>
+            </div>
+            <div class="flex gap-3 w-full lg:w-auto">
+                <button onclick="scrollToForm()" class="flex-1 lg:flex-none px-6 py-3 bg-emerald-600 text-white rounded-xl font-semibold shadow-md hover:bg-emerald-700 transition duration-300 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    إضافة فرصة جديدة
+                </button>
+                <button onclick="exportAllToMarkdown()" class="flex-1 lg:flex-none px-6 py-3 bg-slate-800 text-white rounded-xl font-semibold shadow-md hover:bg-slate-900 transition duration-300 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    تصدير كل البيانات
+                </button>
+            </div>
+        </div>
+
+        <!-- Matrix & Stats Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- 2x2 Matrix Plotter -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col h-[480px]">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <span>🎯 مصفوفة تحديد الأولويات التفاعلية</span>
+                    </h3>
+                    <span class="text-xs text-slate-400">تتوزع الفرص تلقائياً حسب تقييم الجدوى والأثر</span>
+                </div>
+                <!-- Interactive Grid Container -->
+                <div class="relative flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl overflow-hidden grid-bg">
+                    <!-- Quadrant Labels -->
+                    <div class="absolute top-4 left-4 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">مبادرات سريعة الأثر (كسب سريع)</div>
+                    <div class="absolute top-4 right-4 bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">مشاريع استراتيجية كبرى</div>
+                    <div class="absolute bottom-4 left-4 bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">أولوية منخفضة / مؤجلة</div>
+                    <div class="absolute bottom-4 right-4 bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-1 rounded shadow-sm z-10">مشاريع صعبة تحتاج دراسة أعمق</div>
+
+                    <!-- Axes Lines -->
+                    <div class="absolute inset-x-0 top-1/2 h-0.5 bg-slate-300/80"></div>
+                    <div class="absolute inset-y-0 left-1/2 w-0.5 bg-slate-300/80"></div>
+
+                    <!-- Axes Labels -->
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-bold text-slate-500 bg-white px-2 py-0.5 rounded shadow-sm z-10">مستوى الجدوى والسهولة ←</div>
+                    <div class="absolute left-2 top-1/2 transform -translate-y-1/2 -rotate-90 origin-left text-xs font-bold text-slate-500 bg-white px-2 py-0.5 rounded shadow-sm z-10">← الأثر المالي والتشغيلي المتوقع</div>
+
+                    <!-- Dynamically plotted dots will go here -->
+                    <div id="matrix-plot-area" class="absolute inset-0"></div>
+                </div>
+            </div>
+
+            <!-- Stats & Quick Actions -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">📊 إحصائيات الورشة الحالية</h3>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                            <span class="text-3xl font-extrabold text-emerald-600" id="stat-total-cards">0</span>
+                            <p class="text-xs text-slate-400 mt-1">إجمالي الفرص</p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                            <span class="text-3xl font-extrabold text-blue-600" id="stat-avg-impact">0</span>
+                            <p class="text-xs text-slate-400 mt-1">متوسط الأثر</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-sm font-bold text-slate-600 mb-2">التوزيع حسب المحافظ الاستراتيجية:</h4>
+                    <div class="space-y-3" id="pillar-distribution-list">
+                        <!-- Pillars Dynamically updated -->
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500 flex items-center gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-violet-500 inline-block"></span>الشراكات الرقابية المرنة
+                            </span>
+                            <span class="font-bold text-slate-700" id="dist-count-p1">0</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500 flex items-center gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 inline-block"></span>القيمة المعرفية الرقمية
+                            </span>
+                            <span class="font-bold text-slate-700" id="dist-count-p2">0</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-500 flex items-center gap-1">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span>التمكين وتسهيل الأعمال
+                            </span>
+                            <span class="font-bold text-slate-700" id="dist-count-p3">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-100">
+                    <div class="bg-amber-50 border border-amber-200/60 rounded-xl p-4 text-xs text-amber-800 leading-relaxed">
+                        ⚠️ <strong>توجيه رقابي:</strong> تذكر أن لا تؤثر أي فرصة مقترحة على استقلالية الهيئة أو تتعارض مع سلامة وجودة رقابة الغذاء والدواء.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form and Preview Section -->
+        <div id="workshop-workspace" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Entry Form - 7 Cols -->
+            <form id="opportunity-form" onsubmit="handleFormSubmit(event)" class="lg:col-span-7 bg-white p-8 rounded-2xl shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b border-slate-100 pb-4">
+                    <h3 class="text-xl font-bold text-slate-800">📝 تعبئة بطاقة حصر فرصة استثمارية</h3>
+                    <p class="text-xs text-slate-400 mt-1">املأ حقول البطاقة بعناية، وسيقوم النظام بتصميم البطاقة فوراً.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Title -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-name">اسم الفرصة الاستثمارية / المقترح <span class="text-red-500">*</span></label>
+                        <input type="text" id="opp-name" required oninput="updateLivePreview()" placeholder="مثال: ترخيص شركات فحص طرف ثالث لسلامة المستوردات" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                    </div>
+
+                    <!-- Strategic Pillar -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-pillar">المحفظة الاستراتيجية المرتبطة <span class="text-red-500">*</span></label>
+                        <select id="opp-pillar" required onchange="updateLivePreview()" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                            <option value="1">محفظة الشراكات الرقابية المرنة</option>
+                            <option value="2">محفظة القيمة المعرفية الرقمية</option>
+                            <option value="3">محفظة التمكين وتسهيل الأعمال</option>
+                        </select>
+                    </div>
+
+                    <!-- Target Sector -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-sector">القطاع المستهدف <span class="text-red-500">*</span></label>
+                        <select id="opp-sector" required onchange="updateLivePreview()" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                            <option value="الغذاء">قطاع الغذاء</option>
+                            <option value="الدواء">قطاع الدواء</option>
+                            <option value="الأجهزة الطبية">قطاع الأجهزة والمنتجات الطبية</option>
+                            <option value="العمليات التشغيلية">قطاع العمليات والخدمات العامة</option>
+                        </select>
+                    </div>
+
+                    <!-- Problem / Opportunity Description -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-problem">التحدي / الفرصة الحالية (Problem / Opportunity) <span class="text-red-500">*</span></label>
+                        <textarea id="opp-problem" required oninput="updateLivePreview()" rows="3" placeholder="اشرح الثغرة الحالية أو الحاجة غير الملبّاة في الإجراءات الرقابية أو التشغيلية..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm"></textarea>
+                    </div>
+
+                    <!-- Solution Idea -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-solution">الفرضية وآلية الحل المقترحة (Proposed Solution) <span class="text-red-500">*</span></label>
+                        <textarea id="opp-solution" required oninput="updateLivePreview()" rows="3" placeholder="اشرح طريقتك لتنفيذ الفكرة بأسلوب استثماري مرن يحقق العائد المالي أو كفاءة الإنفاق..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm"></textarea>
+                    </div>
+
+                    <!-- Deliverables (What) -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-deliverables">مخرجات المبادرة الرئيسية (Deliverables) <span class="text-red-500">*</span></label>
+                        <input type="text" id="opp-deliverables" required oninput="updateLivePreview()" placeholder="مثال: منصة رقمية لإتاحة البيانات، نظام حوكمة الشراكات المعتمدة، إلخ..." class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                    </div>
+
+                    <!-- Business Balance Drivers (Checkboxes) -->
+                    <div class="md:col-span-2">
+                        <span class="block text-sm font-semibold text-slate-700 mb-2">نوع الأثر المالي المستهدف (موازنة الأعمال):</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="flex items-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer text-xs font-semibold select-none hover:bg-slate-100/50 transition">
+                                <input type="checkbox" id="driver-rev" onchange="updateLivePreview()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500">
+                                تنمية وتوليد إيرادات مضافة غير سيادية
+                            </label>
+                            <label class="flex items-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer text-xs font-semibold select-none hover:bg-slate-100/50 transition">
+                                <input type="checkbox" id="driver-eff" onchange="updateLivePreview()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500">
+                                تحقيق كفاءة إنفاق وتقليص الأعباء التشغيلية
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Evaluator: Feasibility (1-5) -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-sm font-semibold text-slate-700" for="opp-feasibility">سهولة وجدوى التطبيق (Feasibility):</label>
+                            <span id="feasibility-value-display" class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">3 من 5</span>
+                        </div>
+                        <input type="range" id="opp-feasibility" min="1" max="5" step="1" value="3" oninput="updateFeasibilityLabel(this.value); updateLivePreview()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <span class="text-[10px] text-slate-400 block mt-1">1: صعبة جداً (تتطلب تعديلات تشريعية) | 5: سهلة وفورية التطبيق</span>
+                    </div>
+
+                    <!-- Evaluator: Impact (1-5) -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label class="text-sm font-semibold text-slate-700" for="opp-impact">الأثر المالي والتشغيلي المتوقع (Impact):</label>
+                            <span id="impact-value-display" class="text-xs bg-blue-100 text-blue-800 font-bold px-2 py-0.5 rounded">3 من 5</span>
+                        </div>
+                        <input type="range" id="opp-impact" min="1" max="5" step="1" value="3" oninput="updateImpactLabel(this.value); updateLivePreview()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        <span class="text-[10px] text-slate-400 block mt-1">1: أثر محدود ومحلي | 5: أثر مالي وتشغيلي سيادي وضخم</span>
+                    </div>
+
+                    <!-- Idea Owner -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-owner">مقدم المقترح / صاحب المبادرة <span class="text-red-500">*</span></label>
+                        <input type="text" id="opp-owner" required oninput="updateLivePreview()" placeholder="الاسم ثلاثي أو اسم فريق الورشة الفرعي" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                    </div>
+
+                    <!-- Email/Contact -->
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1.5" for="opp-contact">وسيلة التواصل (الايميل / الجوال)</label>
+                        <input type="text" id="opp-contact" oninput="updateLivePreview()" placeholder="مثال: name@sfda.gov.sa" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition duration-300 text-sm">
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 flex gap-4">
+                    <button type="submit" class="flex-1 px-6 py-3 bg-emerald-600 text-white rounded-xl font-bold shadow-md hover:bg-emerald-700 transition duration-300 text-center">
+                        💾 اعتماد وحفظ الفرصة
+                    </button>
+                    <button type="button" onclick="resetForm()" class="px-6 py-3 bg-slate-100 text-slate-600 hover:bg-slate-200 rounded-xl font-semibold transition duration-300">
+                        إعادة تعيين
+                    </button>
+                </div>
+            </form>
+
+            <!-- Live Preview - 5 Cols -->
+            <div class="lg:col-span-5 sticky top-24 space-y-6">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-400 tracking-wider">👀 بطاقة المعاينة والتوثيق الحيّة:</span>
+                    <button onclick="copyFormAsMarkdown()" class="text-xs text-emerald-600 hover:text-emerald-700 font-semibold flex items-center gap-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                        نسخ بيانات البطاقة
+                    </button>
+                </div>
+
+                <!-- SFDA Themed Premium Card -->
+                <div id="live-card-preview" class="bg-white rounded-2xl shadow-xl border-t-8 border-emerald-700 overflow-hidden border border-slate-200/80 transition duration-300">
+                    <!-- Top Ribbon -->
+                    <div class="bg-gradient-to-r from-emerald-800 to-teal-950 px-6 py-4 flex justify-between items-center text-white">
+                        <div>
+                            <span class="text-[10px] bg-emerald-500/30 text-emerald-200 border border-emerald-500/40 px-2 py-0.5 rounded-full font-semibold uppercase tracking-wider" id="preview-pillar-tag">محفظة الشراكات الرقابية المرنة</span>
+                            <h4 class="text-sm font-bold mt-1" id="preview-opp-title">عنوان مبادرة حصر فرصة استثمارية</h4>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-2.5 py-1 rounded border border-white/20" id="preview-sector-tag">الغذاء</span>
+                    </div>
+
+                    <!-- Inner Metadata & Problems -->
+                    <div class="p-6 space-y-4">
+                        <!-- Problem & Solution Block -->
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">التحدي أو الفرصة الحالية (Problem / Opportunity):</span>
+                            <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100" id="preview-problem-text">سوف يظهر هنا شرح للتحدي الحالي المرصود من المشاركين في ورشة العمل...</p>
+                        </div>
+
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">الفرضية والحل الاستثماري المقترح (Solution):</span>
+                            <p class="text-xs text-slate-700 font-semibold leading-relaxed bg-emerald-50/40 p-3 rounded-lg border border-emerald-100/50" id="preview-solution-text">سوف تظهر هنا آلية التشغيل والحل المقترحة...</p>
+                        </div>
+
+                        <!-- Deliverables -->
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">المخرجات الرئيسية (Deliverables):</span>
+                            <div class="flex items-center gap-2 text-xs font-bold text-slate-800 bg-slate-50 px-3 py-2.5 rounded-lg border border-slate-200">
+                                <span class="text-base">📦</span>
+                                <span id="preview-deliverables-text">قائمة مخرجات المبادرة والحل...</span>
+                            </div>
+                        </div>
+
+                        <!-- Drivers & Priority Indicators -->
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold block mb-1">توازن الأعمال (Business Drivers):</span>
+                                <div class="flex flex-col gap-1.5" id="preview-drivers-container">
+                                    <span class="text-[10px] text-slate-400 italic">لم يتم اختيار أي محرك مالي</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-bold block mb-1">الأولويات (Matrix Assessment):</span>
+                                <div class="flex gap-2 text-[10px] font-bold">
+                                    <span class="bg-emerald-100 text-emerald-800 px-2 py-1 rounded" id="preview-feasibility-tag">سهولة: 3</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded" id="preview-impact-tag">أثر: 3</span>
+                                </div>
+                                <div class="mt-2 text-xs font-bold text-emerald-700" id="preview-priority-rank">المحور: كسب سريع ومباشر</div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Details -->
+                        <div class="pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400 font-semibold">
+                            <div>
+                                <span>المالك المقترح: </span>
+                                <span class="text-slate-700 font-bold" id="preview-owner-text">الاسم أو الفريق</span>
+                            </div>
+                            <div id="preview-contact-text">البريد الإلكتروني</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Cards Repository -->
+        <section class="mt-12 bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-100">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800">🗄️ سجل الأفكار والمبادرات المحصورة بالورشة</h3>
+                    <p class="text-xs text-slate-400 mt-1">يحتفظ النظام بالبطاقات المعتمدة تلقائياً طوال فترة الجلسة الحالية.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="clearAllData()" class="px-4 py-2 text-xs bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200/50 rounded-lg font-bold transition">
+                        حذف كل البيانات
+                    </button>
+                </div>
+            </div>
+
+            <!-- List Grid -->
+            <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Fallback empty state -->
+                <div class="col-span-full py-12 text-center text-slate-400 flex flex-col items-center justify-center gap-2" id="no-cards-fallback">
+                    <svg class="w-12 h-12 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    <p class="text-sm font-semibold">لم يتم حفظ أي مبادرات حتى الآن في الجلسة الحالية.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Custom Alert Message -->
+    <div id="custom-toast" class="fixed bottom-6 right-6 bg-slate-950 text-white px-6 py-4 rounded-xl shadow-2xl border border-slate-800 z-50 flex items-center gap-3 transform translate-y-24 opacity-0 transition duration-300 ease-out pointer-events-none">
+        <span class="text-xl" id="toast-icon">✨</span>
+        <div class="text-xs font-semibold" id="toast-text">تمت العملية بنجاح!</div>
     </div>
 
-    <div id="quiz-wrapper">
-        
-        <div class="section-title">أولاً: تطبيقات النسبة المئوية (الفصل الخامس)</div>
+    <script>
+        // Data Store (In-Memory for workshop session)
+        let ideasRepository = [];
 
-        <div class="question-card" id="card-q1">
-            <div class="question-text">س١: يبلغ رصيد سيلين ٤٤,٠٠٠ ريال، إذا دار عليه الحول، فإن قيمة الزكاة المستحقة (بنسبة ٢.٥٪) تساوي:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q1" value="a"> أ) ١٢٥ ريالاً</label></li>
-                <li><label><input type="radio" name="q1" value="b"> ب) ١,١٢٠ ريالاً</label></li>
-                <li><label><input type="radio" name="q1" value="c"> ج) ١,١٠٠ ريالاً</label></li>
-                <li><label><input type="radio" name="q1" value="d"> د) ١,١٥٠ ريالاً</label></li>
-            </ul>
-        </div>
+        // Seed data for immediate visual interest in the workshop
+        const initialSeeds = [
+            {
+                id: "seed-1",
+                name: "ترخيص شركات فحص طرف ثالث لسلامة مستوردات الأغذية",
+                pillar: "1",
+                sector: "الغذاء",
+                problem: "تكدس شحنات الأغذية منخفضة الخطورة في الموانئ الجمركية وتأخر الإرساليات مما يزيد العبء على مفتشي الهيئة.",
+                solution: "تفويض وسحب عينات التفتيش الروتيني لشركات تأهيل واعتماد خاصة، وتحصيل رسوم رخصة سنوية كدخل تشغيل ذاتي.",
+                deliverables: "لائحة اعتماد فني، نظام حوكمة الشراكات مع الطرف الثالث ومشاريع الفحص الخارجي.",
+                drivers: { revenue: true, efficiency: true },
+                feasibility: 4,
+                impact: 4,
+                owner: "فريق الشراكات الرقابية",
+                contact: "team.p1@sfda.gov.sa"
+            },
+            {
+                id: "seed-2",
+                name: "منصة التحليلات والمؤشرات للقطاع الخاص (Data-as-a-Service)",
+                pillar: "2",
+                sector: "العمليات التشغيلية",
+                problem: "تراكم بيانات الاستيراد والترخيص دون استثمار اقتصادي ومعرفي يفيد المستثمرين والباحثين.",
+                solution: "بناء بوابة ويب رقمية وواجهات APIs مدفوعة لتقديم تقارير مؤشرات السوق وأحجام العرض والطلب للمستثمرين.",
+                deliverables: "بوابة رقمية مدفوعة، 4 واجهات برمجية نشطة.",
+                drivers: { revenue: true, efficiency: false },
+                feasibility: 5,
+                impact: 3,
+                owner: "فريق استثمار البيانات والذكاء الاصطناعي",
+                contact: "team.p2@sfda.gov.sa"
+            }
+        ];
 
-        <div class="question-card" id="card-q2">
-            <div class="question-text">س٢: تقدير النسبة المئوية ١٨٪ من ٤٩ يساوي تقريباً:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q2" value="a"> أ) ١٠</label></li>
-                <li><label><input type="radio" name="q2" value="b"> ب) ١٥</label></li>
-                <li><label><input type="radio" name="q2" value="c"> ج) ٢٠</label></li>
-                <li><label><input type="radio" name="q2" value="d"> د) ٢٥</label></li>
-            </ul>
-        </div>
+        // On Load
+        window.onload = function() {
+            // Load seeded data first or localStorage
+            const localData = localStorage.getItem('sfda_workshop_ideas');
+            if (localData) {
+                ideasRepository = JSON.parse(localData);
+            } else {
+                ideasRepository = [...initialSeeds];
+                saveToLocalStorage();
+            }
+            updateLivePreview();
+            renderRepository();
+            updateStats();
+            plotMatrixPoints();
+        };
 
-        <div class="question-card" id="card-q3">
-            <div class="question-text">س٣: العدد الذي ٢٠٪ منه تساوي ١٤ هو:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q3" value="a"> أ) ٧٠</label></li>
-                <li><label><input type="radio" name="q3" value="b"> ب) ٧٥</label></li>
-                <li><label><input type="radio" name="q3" value="c"> ج) ١٥٠</label></li>
-                <li><label><input type="radio" name="q3" value="d"> د) ٢٠٠</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q4">
-            <div class="question-text">س٤: كان سعر علبة زيت الطعام ١٩ ريالا، وارتفع سعره بنسبة ٢٥٪، فإن السعر الجديد لعلبة الزيت هو:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q4" value="a"> أ) ٢٦ ريالاً</label></li>
-                <li><label><input type="radio" name="q4" value="b"> ب) ٢٣.٧٥ ريالاً</label></li>
-                <li><label><input type="radio" name="q4" value="c"> ج) ٣٤.٩ ريالاً</label></li>
-                <li><label><input type="radio" name="q4" value="d"> د) ٣٠ ريالاً</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q5">
-            <div class="question-text">س٥: اشترت زينب ساعة بقيمة ٢٥٠ ريالا بالتقسيط، إذا دفعت ٣٠٪ من ثمنها دفعة أولى، فما هو المبلغ المتبقي عليها؟</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q5" value="a"> أ) ٧٥ ريالاً</label></li>
-                <li><label><input type="radio" name="q5" value="b"> ب) ١٧٥ ريالاً</label></li>
-                <li><label><input type="radio" name="q5" value="c"> ج) ١٩٠ ريالاً</label></li>
-                <li><label><input type="radio" name="q5" value="d"> د) ٢٠٠ ريالاً</label></li>
-            </ul>
-        </div>
-
-
-        <div class="section-title">ثانياً: الأشكال الثنائية والثلاثية الأبعاد (الفصل التاسع)</div>
-
-        <div class="question-card" id="card-q6">
-            <div class="question-text">س٦: مساحة المثلث الذي طول قاعده ١٤ سم وارتفاعه ١٢ سم تساوي:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q6" value="a"> أ) ٨٤ سم²</label></li>
-                <li><label><input type="radio" name="q6" value="b"> ب) ٤٢ سم²</label></li>
-                <li><label><input type="radio" name="q6" value="c"> ج) ٤٠ سم²</label></li>
-                <li><label><input type="radio" name="q6" value="d"> د) ١٩ سم²</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q7">
-            <div class="question-text">س٧: محيط الدائرة التي طول قطرها يساوي ١٠ م هو: (باعتبار ط ≈ ٣.١٤)</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q7" value="a"> أ) ٠.٣١٤ م</label></li>
-                <li><label><input type="radio" name="q7" value="b"> ب) ٣.١٤ م</label></li>
-                <li><label><input type="radio" name="q7" value="c"> ج) ٣١.٤ م</label></li>
-                <li><label><input type="radio" name="q7" value="d"> د) ٣١٤ م</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q8">
-            <div class="question-text">س٨: مساحة شبه المنحرف الذي طولا قاعدتيه ٨ سم و ٤ سم، وارتفاعه ٦ سم تساوي:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q8" value="a"> أ) ٢٠ سم²</label></li>
-                <li><label><input type="radio" name="q8" value="b"> ب) ٣٦ سم²</label></li>
-                <li><label><input type="radio" name="q8" value="c"> ج) ٤٠ سم²</label></li>
-                <li><label><input type="radio" name="q8" value="d"> د) ٤٨ سم²</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q9">
-            <div class="question-text">س٩: ما هو الشكل ثلاثي الأبعاد الذي تميزه خاصية أن له "قاعدة واحدة دائرية ورأس واحد"؟</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q9" value="a"> أ) الأسطوانة</label></li>
-                <li><label><input type="radio" name="q9" value="b"> ب) المخروط</label></li>
-                <li><label><input type="radio" name="q9" value="c"> ج) المنشور المستطيلي</label></li>
-                <li><label><input type="radio" name="q9" value="d"> د) الهرم الثلاثي</label></li>
-            </ul>
-        </div>
-
-        <div class="question-card" id="card-q10">
-            <div class="question-text">س١٠: حجم منشور رباعي (متوازي مستطيلات) طوله ٥ م، وعرضه ٣ م، وارتفاعه ٤ م يساوي:</div>
-            <ul class="options-list">
-                <li><label><input type="radio" name="q10" value="a"> أ) ١٢ م³</label></li>
-                <li><label><input type="radio" name="q10" value="b"> ب) ١٥ م³</label></li>
-                <li><label><input type="radio" name="q10" value="c"> ج) ٦٠ م³</label></li>
-                <li><label><input type="radio" name="q10" value="d"> د) ٧٥ م³</label></li>
-            </ul>
-        </div>
-
-    </div>
-
-    <button class="btn-submit" onclick="evaluateComprehensiveQuiz()">تحليل الإجابات واعتماد النتيجة</button>
-
-    <div class="result-panel" id="result-box">
-        <h3 id="score-label" style="color:var(--primary-color); font-size:22px;"></h3>
-        <p>✨ تفقدّي بطاقات الأسئلة الحمراء بالأسفل لقراءة توجيهات الموجه الذكي خطوة بخطوة!</p>
-    </div>
-</div>
-
-<script>
-    // الإجابات النموذجية الصحيحة للأسئلة الـ 10
-    const correctAnswers = { 
-        q1: "c", q2: "a", q3: "a", q4: "b", q5: "b", 
-        q6: "a", q7: "c", q8: "b", q9: "b", q10: "c" 
-    };
-
-    // بنك تفسيرات الموجه الذكي الرياضي لكل سؤال عند الخطأ
-    const mathExplanations = {
-        q1: "💡 الموجه الذكي: لحساب قيمة الزكاة المستحقة (٢.٥٪)، نقوم بقسمة المبلغ الإجمالي مباشرة على ٤٠. إذن: ٤٤,٠٠٠ ÷ ٤٠ = ١,١٠٠ ريال.",
-        q2: "💡 الموجه الذكي: للتقدير، نقرب الأعداد لقيم سهلة؛ ١٨٪ تقرب إلى ٢٠٪ (الخُمس)، و ٤٩ تقرب إلى ٥٠. الخُمس من ٥٠ هو: ٥٠ ÷ ٥ = ١٠.",
-        q3: "💡 الموجه الذكي: لإيجاد العدد الكلي عندما نعرف الجزء ونسبته، نستخدم التناسب (١٤ ÷ ٠.٢٠) أو ندرك أن ٢٠٪ تعني الخُمس، فنضرب الجزء في ٥؛ أي ١٤ × ٥ = ٧٠.",
-        q4: "💡 الموجه الذكي: مقدار الزيادة هو ٢٥٪ (الربع) من ١٩ ريالا ويساوي ٤.٧٥ ريال. نجمعها مع السعر الأصلي: ١٩ + ٤.٧٥ = ٢٣.٧٥ ريال.",
-        q5: "💡 الموجه الذكي: دفعت زينب ٣٠٪، مما يعني أن النسبة المتبقية عليها هي ٧٠٪. نحسب ٧٠٪ من ٢٥٠؛ أي (٠.٧٠ × ٢٥٠) = ١٧٥ ريال.",
-        q6: "💡 الموجه الذكي: قانون مساحة المثلث هو: نصف × طول القاعدة × الارتفاع. بتطبيق الأرقام: ٠.٥ × ١٤ × ١٢ = ٧ × ١٢ = ٨٤ سم².",
-        q7: "💡 الموجه الذكي: قانون محيط الدائرة = ط × القطر (مح = ط ق). بالتعويض: ٣.١٤ × ١٠ = ٣١.٤ م (تحريك الفاصلة العشرية منزلة لليمين).",
-        q8: "💡 الموجه الذكي: مساحة شبه المنحرف = نصف × الارتفاع × (القاعدة الأولى + القاعدة الثانية). أي: ٠.٥ × ٦ × (٨ + ٤) = ٣ × ١٢ = ٣٦ سم².",
-        q9: "💡 الموجه الذكي: الشكل ثلاثي الأبعاد الذي يمتلك قاعدة دائرية واحدة فقط وينتهي برأس مدبب في الأعلى هو المخروط.",
-        q10: "💡 الموجه الذكي: قانون حجم المنشور الرباعي = الطول × العرض × الارتفاع (ح = ل ض ع). بالتعويض: ٥ × ٣ × ٤ = ١٥ × ٤ = ٦٠ م³."
-    };
-
-    function evaluateComprehensiveQuiz() {
-        const studentName = document.getElementById("student-name").value.trim();
-        if (!studentName) {
-            alert("عزيزتي الطالبة، يرجى كتابة اسمكِ أولاً في الحقل المخصص بالأعلى!");
-            document.getElementById("student-name").focus();
-            return;
+        // Scroll helper
+        function scrollToForm() {
+            document.getElementById('opp-name').focus();
+            document.getElementById('opportunity-form').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // رصد الأسئلة المتروكة فارغة
-        let unanswered = [];
-        for (let id in correctAnswers) {
-            const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
-            if (!checkedOpt) {
-                unanswered.push(id.replace("q", ""));
+        // Live labels
+        function updateFeasibilityLabel(val) {
+            document.getElementById('feasibility-value-display').textContent = `${val} من 5`;
+        }
+        function updateImpactLabel(val) {
+            document.getElementById('impact-value-display').textContent = `${val} من 5`;
+        }
+
+        // Form update trigger
+        function updateLivePreview() {
+            const name = document.getElementById('opp-name').value || "عنوان مبادرة حصر فرصة استثمارية";
+            const pillarVal = document.getElementById('opp-pillar').value;
+            const sector = document.getElementById('opp-sector').value;
+            const problem = document.getElementById('opp-problem').value || "سوف يظهر هنا شرح للتحدي الحالي المرصود من المشاركين في ورشة العمل...";
+            const solution = document.getElementById('opp-solution').value || "سوف تظهر هنا آلية التشغيل والحل المقترحة...";
+            const deliverables = document.getElementById('opp-deliverables').value || "قائمة مخرجات المبادرة والحل...";
+            const owner = document.getElementById('opp-owner').value || "الاسم أو الفريق";
+            const contact = document.getElementById('opp-contact').value || "البريد الإلكتروني";
+            
+            const hasRev = document.getElementById('driver-rev').checked;
+            const hasEff = document.getElementById('driver-eff').checked;
+            const feasibility = parseInt(document.getElementById('opp-feasibility').value);
+            const impact = parseInt(document.getElementById('opp-impact').value);
+
+            // Update Card Preview Texts
+            document.getElementById('preview-opp-title').textContent = name;
+            document.getElementById('preview-sector-tag').textContent = sector;
+            document.getElementById('preview-problem-text').textContent = problem;
+            document.getElementById('preview-solution-text').textContent = solution;
+            document.getElementById('preview-deliverables-text').textContent = deliverables;
+            document.getElementById('preview-owner-text').textContent = owner;
+            document.getElementById('preview-contact-text').textContent = contact;
+
+            // Pillar text
+            let pillarText = "محفظة الشراكات الرقابية المرنة";
+            if(pillarVal === "2") pillarText = "محفظة القيمة المعرفية الرقمية";
+            if(pillarVal === "3") pillarText = "محفظة التمكين وتسهيل الأعمال";
+            document.getElementById('preview-pillar-tag').textContent = pillarText;
+
+            // Drivers
+            const driversContainer = document.getElementById('preview-drivers-container');
+            driversContainer.innerHTML = '';
+            if (hasRev) {
+                driversContainer.innerHTML += `<span class="inline-block text-[9px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded font-bold">💵 تنمية إيرادات غير سيادية</span>`;
+            }
+            if (hasEff) {
+                driversContainer.innerHTML += `<span class="inline-block text-[9px] bg-sky-50 text-sky-800 border border-sky-200 px-2 py-0.5 rounded font-bold">📉 كفاءة إنفاق تشغيلي</span>`;
+            }
+            if (!hasRev && !hasEff) {
+                driversContainer.innerHTML = `<span class="text-[10px] text-slate-400 italic">لم يتم اختيار أي محرك مالي</span>`;
+            }
+
+            // Priority Logic Text
+            document.getElementById('preview-feasibility-tag').textContent = `سهولة: ${feasibility}`;
+            document.getElementById('preview-impact-tag').textContent = `أثر: ${impact}`;
+
+            const rankDisplay = document.getElementById('preview-priority-rank');
+            if (feasibility >= 4 && impact >= 4) {
+                rankDisplay.textContent = "🏆 تصنيف: مكسب سريع واستراتيجي";
+                rankDisplay.className = "mt-2 text-xs font-bold text-emerald-700";
+            } else if (feasibility >= 4 && impact < 4) {
+                rankDisplay.textContent = "⚡ تصنيف: كسب سريع فوري (سهل)";
+                rankDisplay.className = "mt-2 text-xs font-bold text-teal-600";
+            } else if (feasibility < 4 && impact >= 4) {
+                rankDisplay.textContent = "⭐ تصنيف: مشروع استراتيجي كبير";
+                rankDisplay.className = "mt-2 text-xs font-bold text-blue-700";
+            } else {
+                rankDisplay.textContent = "⏳ تصنيف: أولوية لاحقة ومؤجلة";
+                rankDisplay.className = "mt-2 text-xs font-bold text-slate-500";
             }
         }
 
-        // نظام التنبيه الذكي والتحويل السلس
-        if (unanswered.length > 0) {
-            let confirmProceed = confirm(
-                `⚠️ تنبيه لنقص الإجابات:\n\nلقد نسيتِ حل ${unanswered.length} أسئلة، وهي الأسئلة رقم: (${unanswered.join(", ")})\n\n` +
-                `• اضغطي (موافق) للتصحيح الفوري واحتساب الفراغات خطأ.\n` +
-                `• اضغطي (إلغاء الأمر) لتعود الشاشة تلقائياً وتكملي حلها وتتلافي خسارة الدرجات.`
-            );
-            if (!confirmProceed) {
-                document.getElementById(`card-q${unanswered[0]}`).scrollIntoView({ behavior: 'smooth' });
+        // Show toast notifications
+        function showToast(message, icon = "✨") {
+            const toast = document.getElementById('custom-toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Submit Action
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const newIdea = {
+                id: "idea-" + Date.now(),
+                name: document.getElementById('opp-name').value,
+                pillar: document.getElementById('opp-pillar').value,
+                sector: document.getElementById('opp-sector').value,
+                problem: document.getElementById('opp-problem').value,
+                solution: document.getElementById('opp-solution').value,
+                deliverables: document.getElementById('opp-deliverables').value,
+                drivers: {
+                    revenue: document.getElementById('driver-rev').checked,
+                    efficiency: document.getElementById('driver-eff').checked
+                },
+                feasibility: parseInt(document.getElementById('opp-feasibility').value),
+                impact: parseInt(document.getElementById('opp-impact').value),
+                owner: document.getElementById('opp-owner').value,
+                contact: document.getElementById('opp-contact').value
+            };
+
+            ideasRepository.unshift(newIdea);
+            saveToLocalStorage();
+            renderRepository();
+            updateStats();
+            plotMatrixPoints();
+            resetForm();
+            showToast("تم اعتماد وحفظ الفرصة الاستثمارية بنجاح في سجل الورشة!", "💾");
+        }
+
+        function saveToLocalStorage() {
+            localStorage.setItem('sfda_workshop_ideas', JSON.stringify(ideasRepository));
+        }
+
+        // Reset
+        function resetForm() {
+            document.getElementById('opportunity-form').reset();
+            document.getElementById('opp-feasibility').value = 3;
+            document.getElementById('opp-impact').value = 3;
+            updateFeasibilityLabel(3);
+            updateImpactLabel(3);
+            updateLivePreview();
+        }
+
+        // Stats calculation
+        function updateStats() {
+            document.getElementById('stat-total-cards').textContent = ideasRepository.length;
+            
+            if (ideasRepository.length > 0) {
+                const totalImpact = ideasRepository.reduce((sum, item) => sum + item.impact, 0);
+                document.getElementById('stat-avg-impact').textContent = (totalImpact / ideasRepository.length).toFixed(1) + " /5";
+            } else {
+                document.getElementById('stat-avg-impact').textContent = "0";
+            }
+
+            // Dist count
+            let p1 = 0, p2 = 0, p3 = 0;
+            ideasRepository.forEach(item => {
+                if(item.pillar === "1") p1++;
+                if(item.pillar === "2") p2++;
+                if(item.pillar === "3") p3++;
+            });
+            document.getElementById('dist-count-p1').textContent = p1;
+            document.getElementById('dist-count-p2').textContent = p2;
+            document.getElementById('dist-count-p3').textContent = p3;
+        }
+
+        // Plot dynamic points to Matrix
+        function plotMatrixPoints() {
+            const plotArea = document.getElementById('matrix-plot-area');
+            plotArea.innerHTML = '';
+
+            ideasRepository.forEach((item, index) => {
+                // Map scale 1-5 to percentage coordinate on 2D map
+                // Feasibility goes on X (1 is left, 5 is right)
+                // Impact goes on Y (1 is bottom, 5 is top - in web top is 0 so we invert)
+                const xPct = ((item.feasibility - 1) / 4) * 85 + 7.5; // padding
+                const yPct = 100 - (((item.impact - 1) / 4) * 85 + 7.5);
+
+                const dot = document.createElement('div');
+                dot.className = "absolute w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-extrabold text-white cursor-pointer shadow-md transition-all hover:scale-125 z-20";
+                
+                // Color by pillar
+                if (item.pillar === "1") dot.classList.add("bg-violet-600", "ring-2", "ring-violet-200");
+                else if (item.pillar === "2") dot.classList.add("bg-cyan-600", "ring-2", "ring-cyan-200");
+                else dot.classList.add("bg-amber-600", "ring-2", "ring-amber-200");
+
+                dot.style.left = `${xPct}%`;
+                dot.style.top = `${yPct}%`;
+                dot.textContent = index + 1;
+                
+                // Simple hover tooltip
+                dot.title = `${item.name} (أثر: ${item.impact}، جدوى: ${item.feasibility})`;
+                dot.onclick = function() {
+                    showToast(`${item.name} - مقترحة من: ${item.owner}`, "💡");
+                };
+
+                plotArea.appendChild(dot);
+            });
+        }
+
+        // Render Saved Cards
+        function renderRepository() {
+            const grid = document.getElementById('cards-grid');
+            const fallback = document.getElementById('no-cards-fallback');
+            
+            // clear dynamic cards
+            const currentCards = grid.querySelectorAll('.dynamic-card');
+            currentCards.forEach(c => c.remove());
+
+            if (ideasRepository.length === 0) {
+                fallback.classList.remove('hidden');
+                return;
+            } else {
+                fallback.classList.add('hidden');
+            }
+
+            ideasRepository.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "dynamic-card bg-white rounded-xl shadow-md border border-slate-200/60 overflow-hidden flex flex-col justify-between hover:shadow-lg transition";
+                
+                let pillarClass = "border-t-4 border-violet-600";
+                let pTag = "الشراكات الرقابية";
+                if(item.pillar === "2") {
+                    pillarClass = "border-t-4 border-cyan-600";
+                    pTag = "القيمة المعرفية";
+                }
+                if(item.pillar === "3") {
+                    pillarClass = "border-t-4 border-amber-600";
+                    pTag = "التمكين وتسهيل الأعمال";
+                }
+
+                const driverTags = [];
+                if (item.drivers.revenue) driverTags.push(`<span class="bg-emerald-50 text-emerald-800 text-[9px] font-bold px-2 py-0.5 rounded">إيرادات</span>`);
+                if (item.drivers.efficiency) driverTags.push(`<span class="bg-sky-50 text-sky-800 text-[9px] font-bold px-2 py-0.5 rounded">كفاءة</span>`);
+
+                card.innerHTML = `
+                    <div class="p-5 space-y-4 ${pillarClass}">
+                        <div class="flex justify-between items-start gap-2">
+                            <span class="text-[9px] bg-slate-100 text-slate-600 font-bold px-2 py-0.5 rounded-full">${pTag}</span>
+                            <span class="text-[9px] bg-slate-50 text-slate-500 font-bold px-2 py-0.5 rounded">${item.sector}</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-extrabold text-slate-800 line-clamp-2">${index + 1}. ${item.name}</h4>
+                            <p class="text-[10px] text-slate-500 line-clamp-3 mt-1.5 leading-relaxed">${item.solution}</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-1 border-t border-slate-50">
+                            ${driverTags.join('') || '<span class="text-[9px] text-slate-400 italic">بدون محركات مالية</span>'}
+                        </div>
+                    </div>
+                    <div class="bg-slate-50/50 px-5 py-3 border-t border-slate-100 flex justify-between items-center text-[10px] text-slate-400">
+                        <span>قيمة الجدوى والأثر: <strong class="text-slate-700">${item.feasibility}/${item.impact}</strong></span>
+                        <button onclick="deleteCard('${item.id}')" class="text-rose-500 hover:text-rose-700 font-bold">حذف</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Delete Individual
+        function deleteCard(id) {
+            ideasRepository = ideasRepository.filter(c => c.id !== id);
+            saveToLocalStorage();
+            renderRepository();
+            updateStats();
+            plotMatrixPoints();
+            showToast("تمت إزالة البطاقة بنجاح من الورشة.", "🗑️");
+        }
+
+        // Clear All
+        function clearAllData() {
+            if (confirm("هل أنت متأكد من حذف كافة المبادرات في الجلسة الحالية؟ لا يمكن التراجع عن هذا الإجراء.")) {
+                ideasRepository = [];
+                saveToLocalStorage();
+                renderRepository();
+                updateStats();
+                plotMatrixPoints();
+                showToast("تم إفراغ سجل الفرص بالكامل.", "🗑️");
+            }
+        }
+
+        // Export Actions
+        function exportAllToMarkdown() {
+            if (ideasRepository.length === 0) {
+                showToast("لا يوجد أفكار في السجل لتصديرها!", "⚠️");
                 return;
             }
+
+            let mdText = `# نتائج ورشة عمل حصر الفرص وتطوير الأعمال\n`;
+            mdText += `تاريخ التصدير: ${new Date().toLocaleDateString('ar-EG')}\n\n`;
+
+            ideasRepository.forEach((item, i) => {
+                mdText += `### ${i+1}. ${item.name}\n`;
+                mdText += `- **صاحب المبادرة:** ${item.owner} (${item.contact || 'لا يوجد'})\n`;
+                mdText += `- **المحفظة:** المحفظة رقم ${item.pillar}\n`;
+                mdText += `- **القطاع المستهدف:** ${item.sector}\n`;
+                mdText += `- **التحدي:** ${item.problem}\n`;
+                mdText += `- **الحل المقترح:** ${item.solution}\n`;
+                mdText += `- **المخرجات:** ${item.deliverables}\n`;
+                mdText += `- **التقييم الفني:** سهولة التطبيق: ${item.feasibility}/5 | الأثر المتوقع: ${item.impact}/5\n`;
+                mdText += `\n---------------------------------------------\n\n`;
+            });
+
+            // Use clip text fallback
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = mdText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            showToast("تم نسخ التقرير الموحد بصيغة Markdown، يمكنك لصقه الآن في ملف Word أو Teams!", "📋");
         }
 
-        let score = 0;
-        let total = Object.keys(correctAnswers).length;
+        // Copy Live Preview card Markdown
+        function copyFormAsMarkdown() {
+            const name = document.getElementById('opp-name').value || "فرصة بدون اسم";
+            const problem = document.getElementById('opp-problem').value || "التحدي...";
+            const solution = document.getElementById('opp-solution').value || "الحل...";
+            const deliverables = document.getElementById('opp-deliverables').value || "المخرجات...";
+            const owner = document.getElementById('opp-owner').value || "المالك";
 
-        // مراجعة الإجابات وتطبيق الألوان والشروحات
-        for (let id in correctAnswers) {
-            const card = document.getElementById(`card-${id}`);
-            const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
-            
-            const oldTip = card.querySelector('.ai-tip');
-            if (oldTip) oldTip.remove();
-            card.classList.remove("correct-style", "wrong-style");
+            const mdText = `### فرصة استثمارية: ${name}\n- **مقدم الفكرة:** ${owner}\n- **التحدي:** ${problem}\n- **الحل المقترح:** ${solution}\n- **المخرجات:** ${deliverables}`;
 
-            if (checkedOpt && checkedOpt.value === correctAnswers[id]) {
-                score++;
-                card.classList.add("correct-style");
-            } else {
-                card.classList.add("wrong-style");
-                
-                let tipDiv = document.createElement('div');
-                tipDiv.className = 'ai-tip';
-                tipDiv.innerText = mathExplanations[id];
-                card.appendChild(tipDiv);
-            }
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = mdText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            showToast("تم نسخ بيانات البطاقة الحالية!", "📋");
         }
-
-        // إظهار لوحة النتيجة الإجمالية وتمرير الشاشة إليها
-        const percent = Math.round((score / total) * 100);
-        document.getElementById("score-label").innerText = `المبدعة: ${studentName} | النتيجة: ${score} من ${total} (${percent}%)`;
-        
-        const resultBox = document.getElementById("result-box");
-        resultBox.style.display = "block";
-        resultBox.scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
-
+    </script>
 </body>
 </html>
+
