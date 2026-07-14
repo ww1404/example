@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنصة الذكية لهندسة وتسييل المهام الرقابية - SFDA</title>
+    
+    <!-- Tailwind CSS for modern adaptive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Cairo Font from Google Fonts for official premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for official governmental style icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for beautiful real-time analytics dashboards -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sfda: {
+                            green: {
+                                DEFAULT: '#006C35', // Deep official SFDA Green
+                                dark: '#004d25',
+                                light: '#e6f3ec',
+                                hover: '#00552a'
+                            },
+                            gold: {
+                                DEFAULT: '#C5A059', // Official SFDA Gold
+                                dark: '#b08b43',
+                                light: '#f9f5ec'
+                            },
+                            neutral: {
+                                dark: '#1E293B',
+                                light: '#F8FAFC'
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #fcfdfc;
+        }
+        .sfda-gradient-bg {
+            background: linear-gradient(135deg, #006C35 0%, #004d25 100%);
+        }
+        .sfda-card-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 108, 53, 0.08);
+        }
+        .sfda-gold-gradient {
+            background: linear-gradient(135deg, #C5A059 0%, #a27e38 100%);
+        }
+        /* Grid blueprint pattern for workshop engineering identity */
+        .blueprint-bg {
+            background-image: linear-gradient(to right, rgba(0, 108, 53, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 108, 53, 0.03) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #006C35;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="blueprint-bg min-h-screen text-slate-800 flex flex-col">
+
+    <!-- Top Brand Header Navigation -->
+    <header class="sfda-gradient-bg text-white shadow-xl relative overflow-hidden border-b-4 border-sfda-gold">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 py-4 relative z-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Left Brand Identity -->
+            <div class="flex items-center gap-4">
+                <div class="p-2.5 bg-white rounded-xl shadow-lg border border-sfda-gold/30">
+                    <!-- Elegant SVG Logo representing food, medicine & safety matching SFDA theme -->
+                    <svg class="w-10 h-10 text-sfda-green" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4C13 4 4 13 4 24C4 35 13 44 24 44C35 44 44 35 44 24C44 13 35 4 24 4Z" fill="#006C35"/>
+                        <path d="M24 10V38M10 24H38" stroke="#C5A059" stroke-width="4" stroke-linecap="round"/>
+                        <circle cx="24" cy="24" r="8" fill="#FFFFFF"/>
+                        <path d="M21 24L23 26L27 22" stroke="#006C35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-wide flex items-center gap-2">
+                        المنصة الذكية لهندسة وتسييل المهام الرقابية
+                        <span class="text-[10px] bg-sfda-gold text-white px-2 py-0.5 rounded-full font-bold">إصدار 2026</span>
+                    </h1>
+                    <p class="text-xs text-sfda-gold flex items-center gap-1.5 mt-0.5 font-semibold">
+                        <i class="fa-solid d-inline fa-shield-halved"></i>
+                        نموذج التميز التشغيلي والاستدامة المالية - الهيئة العامة للغذاء والدواء
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Tab Switcher Menu -->
+            <div class="flex items-center bg-emerald-950/50 p-1.5 rounded-2xl border border-emerald-800/60 shadow-inner w-full md:w-auto">
+                <button onclick="switchTab('inputs')" id="btn-tab-inputs" class="flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-sfda-gold text-white shadow-md">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    📝 مدخلات الورشة
+                </button>
+                <button onclick="switchTab('dashboard')" id="btn-tab-dashboard" class="flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 text-emerald-100 hover:text-white">
+                    <i class="fa-solid fa-chart-line"></i>
+                    📊 لوحة المؤشرات والأولويات
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-1 w-full">
+
+        <!-- Global Alert Toast Element -->
+        <div id="custom-toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-sfda-gold z-50 flex items-center gap-3 transform translate-y-24 opacity-0 transition duration-300 ease-out pointer-events-none">
+            <span class="p-2 bg-sfda-green rounded-lg text-white" id="toast-icon">✨</span>
+            <div class="text-sm font-semibold" id="toast-text">تمت العملية بنجاح!</div>
+        </div>
+
+        <!-- TAB 1: INPUTS TAB -->
+        <div id="tab-content-inputs" class="space-y-6">
+            
+            <!-- Quick Informational Banner & Global Settings Drawer Toggle -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200/80 sfda-card-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <span class="text-sfda-green"><i class="fa-solid fa-circle-info"></i></span>
+                        مرحباً بك في جلسة العصف الذهني التفاعلية
+                    </h2>
+                    <p class="text-slate-500 text-xs mt-1 max-w-2xl leading-relaxed">
+                        قم بتسجيل وتفكيك المهام والخدمات التي تقدمها وحدتك التنظيمية. ستساعدنا هذه المدخلات على تشخيص الفجوة التقديرية الحالية وتحديد كتل الهدر ومكامن الفرص الاستثمارية الكامنة فورا.
+                    </p>
+                </div>
+                <!-- Global Constant Config Drawer -->
+                <button onclick="toggleConfigModal()" class="px-4 py-2 text-xs bg-sfda-green/10 text-sfda-green border border-sfda-green/20 hover:bg-sfda-green/20 rounded-xl font-bold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-sliders"></i>
+                    ثوابت الاحتساب والتشغيل
+                </button>
+            </div>
+
+            <!-- Main Input Screen Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Main Form (8 Columns) -->
+                <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200/80 sfda-card-shadow p-6 md:p-8 space-y-6">
+                    <div class="border-b border-slate-100 pb-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 bg-sfda-gold rounded-full inline-block"></span>
+                                تدوين تفاصيل الخدمة / المهمة الرقابية
+                            </h3>
+                            <p class="text-[11px] text-slate-400 mt-0.5">يرجى تعبئة الحقول بدقة لضمان معالجة صحيحة للبيانات التقديرية.</p>
+                        </div>
+                        <span class="text-xs bg-sfda-green-light px-3 py-1.5 rounded-xl font-bold text-sfda-green border border-sfda-green/20">
+                            <i class="fa-solid fa-file-invoice"></i> نموذج حصر
+                        </span>
+                    </div>
+
+                    <form id="main-abc-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        
+                        <!-- Row 1: Organizational Data -->
+                        <div class="bg-sfda-green/5 p-4 rounded-xl border border-sfda-green/10 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Table Selection (Gamification Element) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5" for="f-table">رقم الطاولة <span class="text-red-500">*</span></label>
+                                <select id="f-table" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-sfda-green/20 focus:border-sfda-green transition text-xs font-bold">
+                                    <option value="" disabled selected>اختر الطاولة...</option>
+                                    <option value="الطاولة 1">الطاولة 1</option>
+                                    <option value="الطاولة 2">الطاولة 2</option>
+                                    <option value="الطاولة 3">الطاولة 3</option>
+                                    <option value="الطاولة 4">الطاولة 4</option>
+                                    <option value="الطاولة 5">الطاولة 5</option>
+                                    <option value="الطاولة 6">الطاولة 6</option>
+                                    <option value="الطاولة 7">الطاولة 7</option>
+                                    <option value="الطاولة 8">الطاولة 8</option>
+                                    <option value="الطاولة 9">الطاولة 9</option>
+                                    <option value="الطاولة 10">الطاولة 10</option>
+                                    <option value="الطاولة 11">الطاولة 11</option>
+                                    <option value="الطاولة 12">الطاولة 12</option>
+                                    <option value="الطاولة 13">الطاولة 13</option>
+                                    <option value="الطاولة 14">الطاولة 14</option>
+                                    <option value="الطاولة 15">الطاولة 15</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Org Unit (Manual input) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5" for="f-unit">اسم الوحدة التنظيمية (إدخال يدوي) <span class="text-red-500">*</span></label>
+                                <input type="text" id="f-unit" required placeholder="مثال: إدارة الرقابة الميدانية" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-sfda-green/20 focus:border-sfda-green transition text-xs font-semibold">
+                            </div>
+
+                            <!-- Core Sector (Ordered by User Request) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5" for="f-sector">القطاع المعني بالخدمة <span class="text-red-500">*</span></label>
+                                <select id="f-sector" required class="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-sfda-green/20 focus:border-sfda-green transition text-xs font-semibold">
+                                    <option value="" disabled selected>اختر القطاع المعني...</option>
+                                    <option value="قطاع العمليات">قطاع العمليات</option>
+                                    <option value="قطاع الغذاء">قطاع الغذاء</option>
+                                    <option value="قطاع الدواء">قطاع الدواء</option>
+                                    <option value="قطاع الأجهزة والمنتجات الطبية">قطاع الأجهزة والمنتجات الطبية</option>
+                                    <option value="قطاع الأبحاث والمختبرات">قطاع الأبحاث والمختبرات</option>
+                                    <option value="قطاع رأس المال البشري">قطاع رأس المال البشري</option>
+                                    <option value="قطاع الشؤون التنفيذية">قطاع الشؤون التنفيذية</option>
+                                    <option value="قطاع التخطيط والتميز">قطاع التخطيط والتميز</option>
+                                    <option value="قطاع الخدمات المساندة">قطاع الخدمات المساندة</option>
+                                    <option value="الإدارات التابعة لمعالي الرئيس">الإدارات التابعة لمعالي الرئيس</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Section: Technical Profile -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-black text-sfda-green tracking-wide uppercase border-r-2 border-sfda-gold pr-2">الجزء الأول: الملف التقني للخدمة (Technical Profile)</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Service Name -->
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-bold text-slate-700 mb-1.5" for="f-name">اسم الخدمة / المهمة الرقابية الحالية <span class="text-red-500">*</span></label>
+                                    <input type="text" id="f-name" required placeholder="مثال: ترخيص المنشآت وتجديدها أو فحص الإرساليات بالمنافذ" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-sfda-green/20 focus:border-sfda-green transition text-xs font-semibold">
+                                </div>
+
+                                <!-- Current Automation State -->
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-2">حالة الأتمتة الحالية <span class="text-red-500">*</span></label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <label class="flex flex-col items-center justify-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition text-center select-none" id="label-auto-no">
+                                            <input type="radio" name="f-auto" value="no" required onchange="onAutomationStateChange()" class="sr-only">
+                                            <span class="text-lg mb-1 text-slate-400" id="icon-auto-no"><i class="fa-solid fa-keyboard"></i></span>
+                                            <span class="text-[10px] font-bold">غير مؤتمتة</span>
+                                        </label>
+                                        <label class="flex flex-col items-center justify-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition text-center select-none" id="label-auto-partial">
+                                            <input type="radio" name="f-auto" value="partial" required onchange="onAutomationStateChange()" class="sr-only">
+                                            <span class="text-lg mb-1 text-slate-400" id="icon-auto-partial"><i class="fa-solid fa-gears"></i></span>
+                                            <span class="text-[10px] font-bold">مؤتمتة جزئياً</span>
+                                        </label>
+                                        <label class="flex flex-col items-center justify-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition text-center select-none" id="label-auto-yes">
+                                            <input type="radio" name="f-auto" value="yes" required onchange="onAutomationStateChange()" class="sr-only">
+                                            <span class="text-lg mb-1 text-slate-400" id="icon-auto-yes"><i class="fa-solid fa-laptop-code"></i></span>
+                                            <span class="text-[10px] font-bold">مؤتمتة بالكامل</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Needed Improvements (Multiselect Checkboxes) -->
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-2">الحاجة للتحسين والتطوير المأمول <span class="text-[10px] text-slate-400">(اختر كل ما ينطبق)</span></label>
+                                    <div class="grid grid-cols-2 gap-2" id="improvement-options">
+                                        <label class="flex items-center gap-2 p-2 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition text-[11px] font-semibold">
+                                            <input type="checkbox" id="imp-api" value="api" class="rounded text-sfda-green focus:ring-sfda-green/20">
+                                            الربط التقني (API)
+                                        </label>
+                                        <label class="flex items-center gap-2 p-2 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition text-[11px] font-semibold">
+                                            <input type="checkbox" id="imp-ai" value="ai" class="rounded text-sfda-green focus:ring-sfda-green/20">
+                                            ذكاء اصطناعي (AI)
+                                        </label>
+                                        <label class="flex items-center gap-2 p-2 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition text-[11px] font-semibold" id="outsource-checkbox-container">
+                                            <input type="checkbox" id="imp-outsource" value="outsource" class="rounded text-sfda-green focus:ring-sfda-green/20">
+                                            إسناد لطرف ثالث
+                                        </label>
+                                        <label class="flex items-center gap-2 p-2 border border-slate-200 rounded-lg cursor-pointer hover:bg-slate-50 transition text-[11px] font-semibold">
+                                            <input type="checkbox" id="imp-none" value="none" onchange="onNoneImprovementSelected()" class="rounded text-sfda-green focus:ring-sfda-green/20">
+                                            لا تحتاج تطوير
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section: Financial & Operational Impact -->
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-black text-sfda-green tracking-wide uppercase border-r-2 border-sfda-gold pr-2">الجزء الثاني: التقييم المالي والتشغيلي (Financial & Operational Impact)</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- Financial Status Toggle -->
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between">
+                                    <div>
+                                        <label class="block text-xs font-black text-slate-700 mb-1">المقابل المالي للخدمة <span class="text-red-500">*</span></label>
+                                        <span class="text-[10px] text-slate-400">هل تقدم الخدمة بمقابل مالي للشركات؟</span>
+                                    </div>
+                                    <div class="mt-3 flex items-center justify-between bg-white p-1 rounded-lg border border-slate-200">
+                                        <button type="button" onclick="setFeeStatus(false)" id="btn-fee-free" class="flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 bg-sfda-green text-white">مجانية 🟢</button>
+                                        <button type="button" onclick="setFeeStatus(true)" id="btn-fee-paid" class="flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 text-slate-500">مدفوعة 🔴</button>
+                                    </div>
+                                </div>
+
+                                <!-- Fee Value Input (Conditional) -->
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between opacity-50 pointer-events-none transition" id="fee-val-container">
+                                    <label class="block text-xs font-black text-slate-700 mb-1" for="f-fee-val">قيمة المقابل الحالي بالريال</label>
+                                    <span class="text-[10px] text-slate-400">كم يبلغ متوسط الرسم حالياً؟</span>
+                                    <div class="relative mt-3">
+                                        <input type="number" id="f-fee-val" value="0" min="0" class="w-full pl-12 pr-3 py-1.5 bg-white border border-slate-200 rounded-lg focus:ring-1 focus:ring-sfda-green focus:border-sfda-green text-xs font-bold text-slate-800">
+                                        <span class="absolute left-3 top-2 text-[10px] text-slate-400 font-bold">ريال</span>
+                                    </div>
+                                </div>
+
+                                <!-- Time taken per Transaction -->
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between">
+                                    <label class="block text-xs font-black text-slate-700 mb-1">الوقت المستغرق للمعاملة</label>
+                                    <span class="text-[10px] text-slate-400">كم يستغرق إنجاز المعاملة الواحدة؟</span>
+                                    <div class="grid grid-cols-2 gap-1.5 mt-3">
+                                        <input type="number" id="f-time-val" required min="0.01" step="0.01" value="1" class="w-full px-2 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-center">
+                                        <select id="f-time-unit" required class="px-1 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold">
+                                            <option value="hours" selected>ساعة</option>
+                                            <option value="minutes">دقيقة</option>
+                                            <option value="days">يوم عمل</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Volume / Frequency per period -->
+                                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex flex-col justify-between md:col-span-3">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <label class="block text-xs font-black text-slate-700 mb-1">حجم الطلب السنوي / معدل التكرار <span class="text-red-500">*</span></label>
+                                            <span class="text-[10px] text-slate-400">كم عدد المهام أو الطلبات التي يتم تنفيذها دورياً؟</span>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                                        <div class="flex gap-2">
+                                            <input type="number" id="f-volume-val" required min="1" value="150" class="w-1/2 px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold text-center">
+                                            <select id="f-volume-period" required class="w-1/2 px-2 py-2 bg-white border border-slate-200 rounded-lg text-xs font-bold">
+                                                <option value="daily">يومياً</option>
+                                                <option value="weekly">أسبوعياً</option>
+                                                <option value="monthly" selected>شهرياً</option>
+                                                <option value="yearly">سنوياً</option>
+                                            </select>
+                                        </div>
+                                        <div class="text-[11px] text-slate-400 flex items-center bg-white/60 p-2.5 rounded-lg border border-slate-200/50 leading-relaxed">
+                                            <i class="fa-solid fa-lightbulb text-sfda-gold ml-1.5 text-xs"></i>
+                                            تقوم المنصة تلقائياً بحساب الحجم السنوي الموحد لضربها بالثوابت القياسية لـ (8 ساعات يومياً / 5 أيام أسبوعياً) المعتمدة للهيئة.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Section -->
+                        <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row gap-4">
+                            <button type="submit" class="flex-1 px-8 py-3.5 bg-sfda-green text-white font-bold rounded-xl shadow-lg hover:bg-sfda-green-hover hover:shadow-xl transition flex items-center justify-center gap-2 text-xs">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                حفظ واعتماد مدخلات الخدمة في لوحة المؤشرات
+                            </button>
+                            <button type="button" onclick="resetInputForm()" class="px-6 py-3.5 bg-slate-100 text-slate-600 hover:bg-slate-200 rounded-xl font-bold transition text-xs">
+                                إعادة تعيين الحقول
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Live Diagnostic Quick Panel (4 Columns) -->
+                <div class="lg:col-span-4 space-y-6">
+                    <span class="text-xs font-bold text-slate-400 tracking-wider block uppercase">
+                        <i class="fa-solid fa-stethoscope"></i> مؤشرات التشخيص الفوري للمهمة:
+                    </span>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 sfda-card-shadow overflow-hidden sticky top-24">
+                        <div class="sfda-gradient-bg px-6 py-5 text-white relative">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full transform translate-x-8 -translate-y-8"></div>
+                            <span id="p-sector-badge" class="text-[10px] bg-sfda-gold/30 text-white border border-sfda-gold/40 px-2.5 py-0.5 rounded-full font-bold">يرجى الاختيار</span>
+                            <h4 id="p-name-badge" class="text-xs font-black mt-1.5 line-clamp-1">اسم المهمة الرقابية</h4>
+                        </div>
+
+                        <div class="p-6 space-y-5">
+                            <!-- Mini Stat Indicators -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <span id="p-annual-hours" class="text-sm font-extrabold text-slate-800">0</span>
+                                    <p class="text-[9px] text-slate-400 mt-0.5">ساعة سنوية متبذلة</p>
+                                </div>
+                                <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 text-center">
+                                    <span id="p-annual-cost" class="text-xs font-extrabold text-rose-600">0 ريال</span>
+                                    <p class="text-[9px] text-slate-400 mt-0.5">كلفة العبء التشغيلي</p>
+                                </div>
+                            </div>
+
+                            <!-- Cost Recovery Status block -->
+                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200/60 space-y-1.5">
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="font-bold text-slate-500">حالة التغطية المالية:</span>
+                                    <span id="p-recovery-badge" class="bg-rose-100 text-rose-800 px-2.5 py-0.5 rounded font-black text-[10px]">مجهولة</span>
+                                </div>
+                                <p class="text-[11px] text-slate-600 leading-relaxed" id="p-recovery-desc">
+                                    الرجاء تعبئة بيانات الخدمة والوقت والتكرار لإظهار التحليل المالي والتشغيلي المباشر للخدمة.
+                                </p>
+                            </div>
+
+                            <!-- Smart recommendation path -->
+                            <div class="p-4 bg-emerald-50 border border-emerald-200/50 rounded-xl space-y-1">
+                                <span class="text-[10px] text-sfda-green font-black block">💡 المسار التقني والاستثماري الأنسب:</span>
+                                <p id="p-rec-text" class="text-[11px] text-slate-600 leading-relaxed">
+                                    سيتم تحديد التوصية الملائمة بناءً على مستوى الأتمتة المختار وحالة المقابل المالي.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TAB 2: INTERACTIVE DASHBOARD TAB -->
+        <div id="tab-content-dashboard" class="hidden space-y-6">
+            
+            <!-- Global Dashboard Filters & Excel Exporters -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow flex flex-col lg:flex-row justify-between items-stretch lg:items-center gap-4">
+                <!-- Filters Group -->
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="text-xs font-black text-slate-400 uppercase"><i class="fa-solid fa-filter"></i> فلاتر التحكم بالتقرير:</span>
+                    
+                    <!-- Sector Filter -->
+                    <select id="filter-sector" onchange="applyFiltersAndRefresh()" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-600 focus:outline-none focus:ring-1 focus:ring-sfda-green">
+                        <option value="all">كل قطاعات الهيئة</option>
+                        <option value="قطاع العمليات">قطاع العمليات</option>
+                        <option value="قطاع الغذاء">قطاع الغذاء</option>
+                        <option value="قطاع الدواء">قطاع الدواء</option>
+                        <option value="قطاع الأجهزة والمنتجات الطبية">قطاع الأجهزة والمنتجات الطبية</option>
+                        <option value="قطاع الأبحاث والمختبرات">قطاع الأبحاث والمختبرات</option>
+                        <option value="قطاع رأس المال البشري">قطاع رأس المال البشري</option>
+                        <option value="قطاع الشؤون التنفيذية">قطاع الشؤون التنفيذية</option>
+                        <option value="قطاع التخطيط والتميز">قطاع التخطيط والتميز</option>
+                        <option value="قطاع الخدمات المساندة">قطاع الخدمات المساندة</option>
+                        <option value="الإدارات التابعة لمعالي الرئيس">الإدارات التابعة لمعالي الرئيس</option>
+                    </select>
+
+                    <!-- Table Number Filter -->
+                    <select id="filter-table" onchange="applyFiltersAndRefresh()" class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-600 focus:outline-none focus:ring-1 focus:ring-sfda-green">
+                        <option value="all">كل الطاولات</option>
+                        <option value="الطاولة 1">الطاولة 1</option>
+                        <option value="الطاولة 2">الطاولة 2</option>
+                        <option value="الطاولة 3">الطاولة 3</option>
+                        <option value="الطاولة 4">الطاولة 4</option>
+                        <option value="الطاولة 5">الطاولة 5</option>
+                        <option value="الطاولة 6">الطاولة 6</option>
+                        <option value="الطاولة 7">الطاولة 7</option>
+                        <option value="الطاولة 8">الطاولة 8</option>
+                        <option value="الطاولة 9">الطاولة 9</option>
+                        <option value="الطاولة 10">الطاولة 10</option>
+                        <option value="الطاولة 11">الطاولة 11</option>
+                        <option value="الطاولة 12">الطاولة 12</option>
+                        <option value="الطاولة 13">الطاولة 13</option>
+                        <option value="الطاولة 14">الطاولة 14</option>
+                        <option value="الطاولة 15">الطاولة 15</option>
+                    </select>
+                </div>
+
+                <!-- Export / Action Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="exportAllToCSV()" class="px-4 py-2 bg-sfda-green text-white rounded-xl text-xs font-bold shadow hover:bg-sfda-green-hover transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-excel"></i> تصدير Excel (CSV)
+                    </button>
+                    <button onclick="exportAllToMarkdown()" class="px-4 py-2 bg-slate-850 text-white rounded-xl text-xs font-bold shadow hover:bg-slate-900 transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-paste"></i> نسخ تقرير الميثاق
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard KPI Scorecards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Scorecard 1: Count of Tasks -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow flex items-center gap-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 bg-sfda-green h-full"></div>
+                    <div class="p-3.5 bg-sfda-green/10 text-sfda-green rounded-xl text-xl"><i class="fa-solid fa-list-check"></i></div>
+                    <div>
+                        <span id="stat-tasks-count" class="text-2xl font-black text-slate-800">0</span>
+                        <p class="text-xs text-slate-400 mt-0.5 font-bold">الخدمات المحصورة بالورشة</p>
+                    </div>
+                </div>
+
+                <!-- Scorecard 2: Waste Hours Saved -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow flex items-center gap-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 bg-sky-500 h-full"></div>
+                    <div class="p-3.5 bg-sky-50 text-sky-600 rounded-xl text-xl"><i class="fa-solid fa-user-clock"></i></div>
+                    <div>
+                        <span id="stat-hours-waste" class="text-2xl font-black text-slate-800">0 ساعة</span>
+                        <div class="text-[10px] text-slate-400 mt-0.5 leading-tight font-bold">ساعات الهدر البشري السنوية</div>
+                    </div>
+                </div>
+
+                <!-- Scorecard 3: Total Annual Waste Cost -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow flex items-center gap-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 bg-rose-500 h-full"></div>
+                    <div class="p-3.5 bg-rose-50 text-rose-600 rounded-xl text-xl"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                    <div>
+                        <span id="stat-cost-waste" class="text-xl font-black text-rose-600">0 ريال</span>
+                        <p class="text-[10px] text-slate-400 mt-0.5 leading-tight font-bold">العجز والنزيف التشغيلي السنوي</p>
+                    </div>
+                </div>
+
+                <!-- Scorecard 4: Untapped Revenue Opportunities -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow flex items-center gap-4 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1 bg-sfda-gold h-full"></div>
+                    <div class="p-3.5 bg-sfda-gold-light text-sfda-gold rounded-xl text-xl"><i class="fa-solid fa-sack-dollar"></i></div>
+                    <div>
+                        <span id="stat-untapped-rev" class="text-xl font-black text-emerald-700">0 ريال</span>
+                        <p class="text-[10px] text-slate-400 mt-0.5 leading-tight font-bold">فرص الإيرادات السنوية المستهدفة</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Workshop Gamification Leaderboard & Analytics Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Table Contribution Leaderboard (5 Columns) -->
+                <div class="lg:col-span-5 bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+                        <h4 class="text-xs font-black text-slate-800 flex items-center gap-1.5">
+                            <span class="text-sfda-gold"><i class="fa-solid fa-trophy"></i></span>
+                            لوحة الصدارة ومساهمة الطاولات بالورشة
+                        </h4>
+                        <span class="text-[10px] text-slate-400 font-bold">بث مباشر 🔴</span>
+                    </div>
+
+                    <!-- Dynamic Leaderboard list -->
+                    <div class="space-y-2.5 max-h-[300px] overflow-y-auto pr-1" id="leaderboard-list">
+                        <!-- Plotted dynamically by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Beautiful Analytical Graphs using Chart.js (7 Columns) -->
+                <div class="lg:col-span-7 bg-white p-5 rounded-2xl border border-slate-200 sfda-card-shadow space-y-4">
+                    <div class="flex justify-between items-center pb-2 border-b border-slate-100">
+                        <h4 class="text-xs font-black text-slate-800">
+                            <i class="fa-solid fa-chart-pie"></i> تشخيص ومستهدفات الأتمتة والتحسين بالهيئة
+                        </h4>
+                    </div>
+
+                    <!-- Chart Grid inside -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-[250px] items-center">
+                        <div class="relative h-full w-full flex items-center justify-center">
+                            <canvas id="chart-automation"></canvas>
+                        </div>
+                        <div class="relative h-full w-full flex items-center justify-center">
+                            <canvas id="chart-improvements"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Priority Classification Tabs & Cards list -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 sfda-card-shadow space-y-6">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-100 pb-4">
+                    <div>
+                        <h3 class="text-base font-black text-slate-800">🗂️ بطاقات الخدمات والمخرجات المفرزة</h3>
+                        <p class="text-[11px] text-slate-400 mt-0.5">تصنيف تلقائي فوري للمهام والخدمات لتسهيل مناقشتها كأولويات عمل مع المسؤولين.</p>
+                    </div>
+
+                    <!-- Group switcher -->
+                    <div class="flex bg-slate-100 p-1 rounded-xl border border-slate-200">
+                        <button onclick="switchGroup('waste')" id="btn-group-waste" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-white text-rose-700 shadow-sm">
+                            🟥 الهدر التشغيلي الأعلى
+                        </button>
+                        <button onclick="switchGroup('revenue')" id="btn-group-revenue" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:bg-slate-50">
+                            🟩 فرص تسييل الخدمات
+                        </button>
+                        <button onclick="switchGroup('outsource')" id="btn-group-outsource" class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:bg-slate-50">
+                            🟧 فرص التفويض والإسناد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Container for Cards based on active filter group -->
+                <div id="priorities-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 min-h-[150px]">
+                    <!-- Rendered dynamically by JavaScript -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Global System Configuration Dialog (Hidden Modal) -->
+    <div id="config-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 max-w-md w-full mx-4 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <h3 class="text-sm font-black text-sfda-green"><i class="fa-solid fa-sliders"></i> ثوابت الاحتساب والتشغيل بالهيئة</h3>
+                <button onclick="toggleConfigModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Working hours per day -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1" for="config-day-hours">عدد ساعات العمل الفعلية يومياً <span class="text-red-500">*</span></label>
+                    <input type="number" id="config-day-hours" value="8" min="1" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
+                </div>
+
+                <!-- Working days per week -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1" for="config-week-days">عدد أيام العمل أسبوعياً <span class="text-red-500">*</span></label>
+                    <input type="number" id="config-week-days" value="5" min="1" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
+                </div>
+
+                <!-- Average Hourly Employee cost -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1" for="config-hour-cost">متوسط التكلفة التشغيلية الإجمالية للموظف بالساعة (ريال) <span class="text-red-500">*</span></label>
+                    <input type="number" id="config-hour-cost" value="100" min="10" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
+                    <span class="text-[10px] text-slate-400 block mt-1 leading-normal">تستخدم هذه القيمة الافتراضية لتحويل ساعات العمل المهدرة إلى قيمة مالية تعادل الرواتب والمزايا التشغيلية.</span>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex gap-3">
+                <button onclick="saveGlobalConfig()" class="flex-1 py-2 px-4 bg-sfda-green text-white rounded-lg text-xs font-bold shadow hover:bg-sfda-green-hover transition">
+                    حفظ وإعادة حساب المخرجات
+                </button>
+                <button onclick="toggleConfigModal()" class="py-2 px-4 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition">
+                    إلغاء
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brand Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 space-y-2 relative z-10">
+            <p class="font-bold text-slate-300">الهيئة العامة للغذاء والدواء © 2026</p>
+            <p class="text-[10px] text-slate-500">تم تطوير هذه المنصة التفاعلية المسرعة لتخدم منسوبي الهيئة في ورش عمل التخطيط والتميز وتسييل الخدمات بقطاع التطوير والاستثمار الرقابي.</p>
+        </div>
+    </footer>
+
+    <script>
+        // In-Memory Global State
+        let state = {
+            activeTab: 'inputs',
+            activeGroup: 'waste',
+            config: {
+                dailyHours: 8,
+                weeklyDays: 5,
+                avgHourlyCost: 100
+            },
+            tasks: []
+        };
+
+        // Seed data initialized for SFDA segments
+        const sfdaSeedData = [
+            {
+                id: 'seed-1',
+                table: 'الطاولة 3',
+                unit: 'إدارة تفتيش المنافذ البرية',
+                sector: 'قطاع العمليات',
+                name: 'فسح ومطابقة الإرساليات الغذائية الواردة عبر المنافذ البرية',
+                auto: 'partial',
+                improvements: ['api', 'ai'],
+                hasFee: 'yes',
+                feeVal: 150,
+                timeVal: 0.75,
+                timeUnit: 'hours',
+                volumeVal: 2400,
+                volumePeriod: 'monthly'
+            },
+            {
+                id: 'seed-2',
+                table: 'الطاولة 1',
+                unit: 'إدارة تسجيل مستحضرات التجميل',
+                sector: 'قطاع الدواء',
+                name: 'مراجعة وتقييم ملفات إدراج مستحضرات التجميل منخفضة الخطورة',
+                auto: 'no',
+                improvements: ['ai'],
+                hasFee: 'no',
+                feeVal: 0,
+                timeVal: 0.5,
+                timeUnit: 'hours',
+                volumeVal: 800,
+                volumePeriod: 'monthly'
+            },
+            {
+                id: 'seed-3',
+                table: 'الطاولة 5',
+                unit: 'إدارة الرقابة الصحية للغذاء',
+                sector: 'قطاع الغذاء',
+                name: 'التفتيش والتقييم الميداني لمصانع ومستودعات الأغذية المحلية',
+                auto: 'no',
+                improvements: ['outsource'],
+                hasFee: 'no',
+                feeVal: 0,
+                timeVal: 4,
+                timeUnit: 'hours',
+                volumeVal: 350,
+                volumePeriod: 'monthly'
+            },
+            {
+                id: 'seed-4',
+                table: 'الطاولة 2',
+                unit: 'إدارة التراخيص الطبية',
+                sector: 'قطاع الأجهزة والمنتجات الطبية',
+                name: 'إصدار وتجديد تراخيص مستودعات الأجهزة الطبية المؤتمتة بالكامل',
+                auto: 'yes',
+                improvements: ['api'],
+                hasFee: 'no',
+                feeVal: 0,
+                timeVal: 0.25,
+                timeUnit: 'hours',
+                volumeVal: 500,
+                volumePeriod: 'monthly'
+            }
+        ];
+
+        // Global Chart instances to avoid duplicates on redraw
+        let automationChartInstance = null;
+        let improvementsChartInstance = null;
+
+        window.onload = function() {
+            // Check LocalStorage or load Seed Data
+            const localConfig = localStorage.getItem('sfda_platform_config');
+            if (localConfig) {
+                state.config = JSON.parse(localConfig);
+                document.getElementById('config-day-hours').value = state.config.dailyHours;
+                document.getElementById('config-week-days').value = state.config.weeklyDays;
+                document.getElementById('config-hour-cost').value = state.config.avgHourlyCost;
+            }
+
+            const localTasks = localStorage.getItem('sfda_platform_tasks');
+            if (localTasks) {
+                state.tasks = JSON.parse(localTasks);
+            } else {
+                state.tasks = [...sfdaSeedData];
+                saveTasksToLocal();
+            }
+
+            // Sync forms & views
+            setFeeStatus(false);
+            onAutomationStateChange();
+            calculateFormDiagnostics();
+            renderLeaderboard();
+            renderCharts();
+            renderPrioritizedCards();
+            updateTotalStats();
+        };
+
+        function saveTasksToLocal() {
+            localStorage.setItem('sfda_platform_tasks', JSON.stringify(state.tasks));
+        }
+
+        function switchTab(tabId) {
+            state.activeTab = tabId;
+            const inputsTab = document.getElementById('tab-content-inputs');
+            const dashboardTab = document.getElementById('tab-content-dashboard');
+            
+            const btnInputs = document.getElementById('btn-tab-inputs');
+            const btnDashboard = document.getElementById('btn-tab-dashboard');
+
+            if (tabId === 'inputs') {
+                inputsTab.classList.remove('hidden');
+                dashboardTab.classList.add('hidden');
+                
+                btnInputs.className = "flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-sfda-gold text-white shadow-md";
+                btnDashboard.className = "flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 text-emerald-100 hover:text-white";
+            } else {
+                inputsTab.classList.add('hidden');
+                dashboardTab.classList.remove('hidden');
+                
+                btnInputs.className = "flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 text-emerald-100 hover:text-white";
+                btnDashboard.className = "flex-1 md:flex-none px-6 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 bg-sfda-gold text-white shadow-md";
+                
+                // Refresh dashboards and charts inside Tab 2
+                applyFiltersAndRefresh();
+            }
+        }
+
+        function toggleConfigModal() {
+            const modal = document.getElementById('config-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                }, 50);
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        function saveGlobalConfig() {
+            state.config.dailyHours = parseFloat(document.getElementById('config-day-hours').value) || 8;
+            state.config.weeklyDays = parseFloat(document.getElementById('config-week-days').value) || 5;
+            state.config.avgHourlyCost = parseFloat(document.getElementById('config-hour-cost').value) || 100;
+
+            localStorage.setItem('sfda_platform_config', JSON.stringify(state.config));
+            toggleConfigModal();
+            showToast('تم تحديث ثوابت الاحتساب للمنصة وإعادة تشكيل العدادات!', '⚙️');
+            
+            // Re-render everything
+            calculateFormDiagnostics();
+            updateTotalStats();
+            renderPrioritizedCards();
+            renderLeaderboard();
+        }
+
+        function showToast(message, icon = "✨") {
+            const toast = document.getElementById('custom-toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        function setFeeStatus(isPaid) {
+            const btnFree = document.getElementById('btn-fee-free');
+            const btnPaid = document.getElementById('btn-fee-paid');
+            const feeValContainer = document.getElementById('fee-val-container');
+            const feeValInput = document.getElementById('f-fee-val');
+
+            if (isPaid) {
+                btnFree.className = "flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 text-slate-500";
+                btnPaid.className = "flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 bg-rose-600 text-white";
+                feeValContainer.classList.remove('opacity-50', 'pointer-events-none');
+                feeValInput.removeAttribute('disabled');
+                feeValInput.focus();
+            } else {
+                btnFree.className = "flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 bg-sfda-green text-white";
+                btnPaid.className = "flex-1 py-1 px-3 text-xs font-bold rounded-md transition duration-200 text-slate-500";
+                feeValContainer.classList.add('opacity-50', 'pointer-events-none');
+                feeValInput.setAttribute('disabled', 'true');
+                feeValInput.value = 0;
+            }
+            calculateFormDiagnostics();
+        }
+
+        // Handle dynamically available improvement options depending on automation status
+        function onAutomationStateChange() {
+            const selectedAuto = document.querySelector('input[name="f-auto"]:checked')?.value;
+            const labelNo = document.getElementById('label-auto-no');
+            const labelPartial = document.getElementById('label-auto-partial');
+            const labelYes = document.getElementById('label-auto-yes');
+
+            const iconNo = document.getElementById('icon-auto-no');
+            const iconPartial = document.getElementById('icon-auto-partial');
+            const iconYes = document.getElementById('icon-auto-yes');
+
+            // Reset labels styles
+            [labelNo, labelPartial, labelYes].forEach(l => {
+                l.className = "flex flex-col items-center justify-center p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition text-center select-none";
+            });
+            [iconNo, iconPartial, iconYes].forEach(i => i.className = "text-lg mb-1 text-slate-400");
+
+            // Apply selected styling
+            if (selectedAuto === 'no') {
+                labelNo.className = "flex flex-col items-center justify-center p-3 border-2 border-rose-500 bg-rose-50 text-rose-900 rounded-xl cursor-pointer text-center select-none";
+                iconNo.className = "text-lg mb-1 text-rose-600";
+                document.getElementById('outsource-checkbox-container').classList.remove('hidden');
+            } else if (selectedAuto === 'partial') {
+                labelPartial.className = "flex flex-col items-center justify-center p-3 border-2 border-amber-500 bg-amber-50 text-amber-900 rounded-xl cursor-pointer text-center select-none";
+                iconPartial.className = "text-lg mb-1 text-amber-600";
+                document.getElementById('outsource-checkbox-container').classList.remove('hidden');
+            } else if (selectedAuto === 'yes') {
+                labelYes.className = "flex flex-col items-center justify-center p-3 border-2 border-sfda-green bg-sfda-green/10 text-sfda-green rounded-xl cursor-pointer text-center select-none";
+                iconYes.className = "text-lg mb-1 text-sfda-green";
+                // Hide third party outsourcing checkbox for already fully automated ones
+                document.getElementById('outsource-checkbox-container').classList.add('hidden');
+                document.getElementById('imp-outsource').checked = false;
+            }
+
+            calculateFormDiagnostics();
+        }
+
+        // If 'none' improvement check is clicked, disable others
+        function onNoneImprovementSelected() {
+            const impNone = document.getElementById('imp-none').checked;
+            if (impNone) {
+                document.getElementById('imp-api').checked = false;
+                document.getElementById('imp-ai').checked = false;
+                document.getElementById('imp-outsource').checked = false;
+            }
+            calculateFormDiagnostics();
+        }
+
+        // Calculate and return values from user inputs helper
+        function extractTaskObjectFromForm() {
+            const table = document.getElementById('f-table').value || "غير محدد";
+            const unit = document.getElementById('f-unit').value || "اسم الوحدة التنظيمية";
+            const sector = document.getElementById('f-sector').value || "قطاع العمليات";
+            const name = document.getElementById('f-name').value || "مهمة رقابية جديدة";
+            
+            const auto = document.querySelector('input[name="f-auto"]:checked')?.value || 'no';
+            
+            // Build improvements array
+            const improvements = [];
+            if (document.getElementById('imp-api').checked) improvements.push('api');
+            if (document.getElementById('imp-ai').checked) improvements.push('ai');
+            if (document.getElementById('imp-outsource').checked) improvements.push('outsource');
+            if (document.getElementById('imp-none').checked) improvements.push('none');
+
+            const hasFee = document.getElementById('btn-fee-paid').classList.contains('bg-rose-600') ? 'yes' : 'no';
+            const feeVal = parseFloat(document.getElementById('f-fee-val').value) || 0;
+
+            const timeVal = parseFloat(document.getElementById('f-time-val').value) || 0;
+            const timeUnit = document.getElementById('f-time-unit').value;
+
+            const volumeVal = parseFloat(document.getElementById('f-volume-val').value) || 0;
+            const volumePeriod = document.getElementById('f-volume-period').value;
+
+            return {
+                id: 'task-temp',
+                table,
+                unit,
+                sector,
+                name,
+                auto,
+                improvements,
+                hasFee,
+                feeVal,
+                timeVal,
+                timeUnit,
+                volumeVal,
+                volumePeriod
+            };
+        }
+
+        // Formulate core calculations on input
+        function calculateFormDiagnostics() {
+            const task = extractTaskObjectFromForm();
+            const calcs = performCoreCalculations(task);
+
+            // Update live visual indicators
+            document.getElementById('p-name-badge').textContent = task.name;
+            document.getElementById('p-sector-badge').textContent = task.sector;
+            document.getElementById('p-annual-hours').textContent = calcs.annualHours.toLocaleString('ar-EG');
+            document.getElementById('p-annual-cost').textContent = `${calcs.annualCost.toLocaleString('ar-EG')} ريال`;
+
+            const badge = document.getElementById('p-recovery-badge');
+            const desc = document.getElementById('p-recovery-desc');
+            const recText = document.getElementById('p-rec-text');
+
+            if (task.auto === 'yes') {
+                if (task.hasFee === 'no') {
+                    badge.textContent = "أتمتة صفرية العائد 🟡";
+                    badge.className = "bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded font-black text-[10px]";
+                    desc.textContent = `المهمة مؤتمتة بالكامل وبدون مقابل حالياً. يمثل هذا فرصة استثمارية سانحة لتسييل الدخل عبر رسوم معالجة تقنية.`;
+                    
+                    recText.textContent = `يوصى باعتماد باقات معالجة فورية أو ربط مباشر (Premium API) بمقابل مالي رمزي (مثال: 50 ريال) يدر عوائد تشغيلية تبلغ حوالي (${calcs.potentialRevenue.toLocaleString('ar-EG')} ريال سنوياً) بجهد بشري منعدم.`;
+                } else {
+                    badge.textContent = "كفاءة واسترداد ممتاز 🟢";
+                    badge.className = "bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded font-black text-[10px]";
+                    desc.textContent = `الخدمة مؤتمتة وتتقاضى الهيئة مقابلاً مالياً يغطي تكاليف المعالجة التقنية ويحقق وفراً ممتازاً سنوياً.`;
+                    recText.textContent = `مستقر تشغيلياً وتقنياً. يوصى فقط بزيادة كفاءة الربط الرقمي لتبادل البيانات مع الشركات الكبرى.`;
+                }
+            } else {
+                // Manual or partial automation
+                if (task.hasFee === 'no') {
+                    badge.textContent = "نزيف تشغيلي كامل 🔴";
+                    badge.className = "bg-rose-100 text-rose-800 px-2.5 py-0.5 rounded font-black text-[10px]";
+                    desc.textContent = `الخدمة تقدم بشكل يدوي ومجاني بالكامل. تكلفتها السنوية البالغة (${calcs.annualCost.toLocaleString('ar-EG')} ريال) تُمثل هدراً مباشراً لموارد الهيئة.`;
+                } else {
+                    const diff = calcs.annualRevenue - calcs.annualCost;
+                    if (diff >= 0) {
+                        badge.textContent = "تغطية ممتازة 🟢";
+                        badge.className = "bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded font-black text-[10px]";
+                        desc.textContent = `المقابل المالي الحالي (${calcs.annualRevenue.toLocaleString('ar-EG')} ريال) يغطي الجهد التشغيلي بالكامل ويحقق فائضاً قدره (${diff.toLocaleString('ar-EG')} ريال سنوياً).`;
+                    } else {
+                        badge.textContent = "عجز تشغيلي جزئي 🟡";
+                        badge.className = "bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded font-black text-[10px]";
+                        desc.textContent = `المقابل المالي غير كافٍ. تخسر الهيئة سنوياً ما قيمته (${Math.abs(diff).toLocaleString('ar-EG')} ريال) لتغطية الفرق البشري للمهمة اليدوية.`;
+                    }
+                }
+
+                // Craft recommendations for manual or partial tasks
+                if (task.improvements.includes('outsource')) {
+                    recText.textContent = `الجهد الميداني اليدوي مرتفع. المقترح هو تفعيل مسار "تفويض طرف ثالث" مرخص ومؤهل من الهيئة، مما يوفر كامل الجهد والنزيف المالي التشغيلي.`;
+                } else if (task.improvements.includes('ai')) {
+                    recText.textContent = `أدوات الذكاء الاصطناعي (AI) قادرة على تحليل واختصار وقت الإجراء الورقي والتدقيق بنسبة تزيد عن 80%، مما يحقق وفراً تشغيلياً فورياً ومستداماً.`;
+                } else if (task.improvements.includes('api')) {
+                    recText.textContent = `الربط المباشر وقنوات الـ API ستلغي الحاجة لإدخال ومطابقة المستندات والبيانات يدوياً، مما يوفر الوقت ويسرع سلاسل إمداد القطاع الرقابي.`;
+                } else {
+                    recText.textContent = `المهمة يدوية وبحاجة لإعادة هندسة الإجراء والأتمتة الشاملة للتحول نحو نموذج الاستدامة التشغيلية.`;
+                }
+            }
+        }
+
+        // Core logic to parse and calculate metrics
+        function performCoreCalculations(task) {
+            // 1. Parse time value into hours based on 8 hour workday
+            let hoursPerTx = task.timeVal;
+            if (task.timeUnit === 'minutes') {
+                hoursPerTx = task.timeVal / 60;
+            } else if (task.timeUnit === 'days') {
+                hoursPerTx = task.timeVal * state.config.dailyHours;
+            }
+
+            // 2. Parse volume per year based on 5 days/week working environment (approx 260 days)
+            let annualVolume = task.volumeVal;
+            if (task.volumePeriod === 'daily') {
+                annualVolume = task.volumeVal * state.config.weeklyDays * 52;
+            } else if (task.volumePeriod === 'weekly') {
+                annualVolume = task.volumeVal * 52;
+            } else if (task.volumePeriod === 'monthly') {
+                annualVolume = task.volumeVal * 12;
+            }
+
+            // 3. Math Metrics
+            const annualHours = annualVolume * hoursPerTx;
+            const annualCost = annualHours * state.config.avgHourlyCost;
+            const annualRevenue = task.hasFee === 'yes' ? (annualVolume * task.feeVal) : 0;
+            
+            // Potential Revenue for free + automated tasks (assuming a nominal processing fee of 50 SAR)
+            const potentialRevenue = (task.auto === 'yes' && task.hasFee === 'no') ? (annualVolume * 50) : 0;
+
+            return {
+                annualVolume,
+                annualHours,
+                annualCost,
+                annualRevenue,
+                potentialRevenue
+            };
+        }
+
+        // Form Submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const rawTask = extractTaskObjectFromForm();
+            if (!rawTask.table || !rawTask.unit || !rawTask.sector || !rawTask.name) {
+                showToast("يرجى ملء جميع الحقول المطلوبة واختيار القطاع والطاولة المعنية!", "⚠️");
+                return;
+            }
+
+            const newTask = {
+                ...rawTask,
+                id: 'task-' + Date.now()
+            };
+
+            state.tasks.unshift(newTask);
+            saveTasksToLocal();
+            
+            resetInputForm();
+            showToast("تم اعتماد وحفظ الخدمة وإرسالها للوحة التحكم التفاعلية!", "💾");
+            
+            // Switch view immediately to let them see results
+            switchTab('dashboard');
+        }
+
+        // Reset inputs to baseline defaults
+        function resetInputForm() {
+            document.getElementById('f-unit').value = "";
+            document.getElementById('f-name').value = "";
+            document.getElementById('f-table').selectedIndex = 0;
+            document.getElementById('f-sector').selectedIndex = 0;
+            
+            // Uncheck checkboxes
+            document.getElementById('imp-api').checked = false;
+            document.getElementById('imp-ai').checked = false;
+            document.getElementById('imp-outsource').checked = false;
+            document.getElementById('imp-none').checked = false;
+
+            // Reset radio buttons
+            const radioNo = document.querySelector('input[name="f-auto"][value="no"]');
+            if (radioNo) radioNo.checked = true;
+
+            document.getElementById('f-time-val').value = 1;
+            document.getElementById('f-time-unit').value = 'hours';
+            document.getElementById('f-volume-val').value = 150;
+            document.getElementById('f-volume-period').value = 'monthly';
+
+            setFeeStatus(false);
+            onAutomationStateChange();
+            calculateFormDiagnostics();
+        }
+
+        // Bind calculated changes to form actions
+        document.getElementById('f-name').oninput = calculateFormDiagnostics;
+        document.getElementById('f-unit').oninput = calculateFormDiagnostics;
+        document.getElementById('f-sector').onchange = calculateFormDiagnostics;
+        document.getElementById('f-time-val').oninput = calculateFormDiagnostics;
+        document.getElementById('f-time-unit').onchange = calculateFormDiagnostics;
+        document.getElementById('f-volume-val').oninput = calculateFormDiagnostics;
+        document.getElementById('f-volume-period').onchange = calculateFormDiagnostics;
+
+        // Calculate Contributions per table and render
+        function renderLeaderboard() {
+            const listContainer = document.getElementById('leaderboard-list');
+            listContainer.innerHTML = "";
+
+            // Init dynamic score map
+            const tableScores = {};
+            for (let i = 1; i <= 15; i++) {
+                tableScores[`الطاولة ${i}`] = { count: 0, hoursSaved: 0 };
+            }
+
+            // Fill based on current task repository
+            state.tasks.forEach(t => {
+                if (tableScores[t.table]) {
+                    const calcs = performCoreCalculations(t);
+                    tableScores[t.table].count += 1;
+                    tableScores[t.table].hoursSaved += calcs.annualHours;
+                }
+            });
+
+            // Convert to array and sort descending by total hours / tasks
+            const sortedTables = Object.keys(tableScores)
+                .map(key => ({ name: key, ...tableScores[key] }))
+                .filter(item => item.count > 0) // Only show tables with active inputs to save screen space
+                .sort((a, b) => b.count - a.count || b.hoursSaved - a.hoursSaved);
+
+            if (sortedTables.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 text-xs">
+                        <i class="fa-solid fa-gamepad text-2xl mb-2 text-slate-300 block"></i>
+                        لم تقم أي طاولة بإرسال بيانات حتى الآن. ابدأ الإدخال للظهور في لوحة الصدارة الحية!
+                    </div>
+                `;
+                return;
+            }
+
+            sortedTables.forEach((item, index) => {
+                let badge = "";
+                if (index === 0) badge = "🥇";
+                else if (index === 1) badge = "🥈";
+                else if (index === 2) badge = "🥉";
+                else badge = `🏅`;
+
+                const hoursLabel = Math.round(item.hoursSaved).toLocaleString('ar-EG');
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "flex justify-between items-center p-2.5 bg-slate-50 hover:bg-slate-100/80 border border-slate-200/50 rounded-xl transition text-xs";
+                itemDiv.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <span class="text-base">${badge}</span>
+                        <span class="font-extrabold text-slate-800">${item.name}</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-sfda-green/10 text-sfda-green border border-sfda-green/20 px-2 py-0.5 rounded-lg font-black text-[10px]">${item.count} خدمة</span>
+                        <span class="text-[10px] text-slate-500 font-bold">${hoursLabel} ساعة متبذلة</span>
+                    </div>
+                `;
+                listContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Update upper Global statistics counters
+        function updateTotalStats() {
+            let totalTasks = 0;
+            let totalHoursWaste = 0;
+            let totalCostWaste = 0;
+            let totalUntappedRev = 0;
+
+            const filteredTasks = getFilteredTasks();
+
+            filteredTasks.forEach(t => {
+                totalTasks++;
+                const calcs = performCoreCalculations(t);
+                
+                // If service is manual/partial, total cost is counted as operational waste
+                if (t.auto !== 'yes') {
+                    if (t.hasFee === 'no') {
+                        totalCostWaste += calcs.annualCost;
+                    } else {
+                        const gap = calcs.annualCost - calcs.annualRevenue;
+                        if (gap > 0) totalCostWaste += gap;
+                    }
+                    totalHoursWaste += calcs.annualHours;
+                } else {
+                    // Fully Automated ones
+                    if (t.hasFee === 'no') {
+                        // Potential new monetization revenue
+                        totalUntappedRev += calcs.potentialRevenue;
+                    }
+                }
+            });
+
+            document.getElementById('stat-tasks-count').textContent = totalTasks.toLocaleString('ar-EG');
+            document.getElementById('stat-hours-waste').textContent = `${Math.round(totalHoursWaste).toLocaleString('ar-EG')} ساعة`;
+            document.getElementById('stat-cost-waste').textContent = `${Math.round(totalCostWaste).toLocaleString('ar-EG')} ريال`;
+            document.getElementById('stat-untapped-rev').textContent = `${Math.round(totalUntappedRev).toLocaleString('ar-EG')} ريال`;
+        }
+
+        // Apply drop down filter choices helper
+        function getFilteredTasks() {
+            const sectorFilter = document.getElementById('filter-sector').value;
+            const tableFilter = document.getElementById('filter-table').value;
+
+            return state.tasks.filter(t => {
+                const matchesSector = (sectorFilter === 'all' || t.sector === sectorFilter);
+                const matchesTable = (tableFilter === 'all' || t.table === tableFilter);
+                return matchesSector && matchesTable;
+            });
+        }
+
+        function applyFiltersAndRefresh() {
+            updateTotalStats();
+            renderPrioritizedCards();
+            renderLeaderboard();
+            renderCharts();
+        }
+
+        function switchGroup(group) {
+            state.activeGroup = group;
+            
+            const btnWaste = document.getElementById('btn-group-waste');
+            const btnRevenue = document.getElementById('btn-group-revenue');
+            const btnOutsource = document.getElementById('btn-group-outsource');
+
+            // Reset styling
+            [btnWaste, btnRevenue, btnOutsource].forEach(b => {
+                b.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition text-slate-600 hover:bg-slate-50";
+            });
+
+            // Set Selected styling
+            if (group === 'waste') {
+                btnWaste.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-white text-rose-700 shadow-sm";
+            } else if (group === 'revenue') {
+                btnRevenue.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-white text-emerald-700 shadow-sm";
+            } else if (group === 'outsource') {
+                btnOutsource.className = "px-3.5 py-1.5 rounded-lg text-xs font-bold transition bg-white text-amber-700 shadow-sm";
+            }
+
+            renderPrioritizedCards();
+        }
+
+        function renderPrioritizedCards() {
+            const container = document.getElementById('priorities-cards-container');
+            container.innerHTML = "";
+
+            const filteredTasks = getFilteredTasks();
+            let cardsToDisplay = [];
+
+            if (state.activeGroup === 'waste') {
+                // Filter only manual or partially automated tasks
+                cardsToDisplay = filteredTasks.filter(t => t.auto !== 'yes');
+                // Order by Waste cost descending
+                cardsToDisplay.sort((a, b) => {
+                    const cA = performCoreCalculations(a).annualCost;
+                    const cB = performCoreCalculations(b).annualCost;
+                    return cB - cA;
+                });
+            } else if (state.activeGroup === 'revenue') {
+                // Fully automated tasks with untapped potential
+                cardsToDisplay = filteredTasks.filter(t => t.auto === 'yes' && t.hasFee === 'no');
+                // Order by potential revenue descending
+                cardsToDisplay.sort((a, b) => {
+                    const rA = performCoreCalculations(a).potentialRevenue;
+                    const rB = performCoreCalculations(b).potentialRevenue;
+                    return rB - rA;
+                });
+            } else if (state.activeGroup === 'outsource') {
+                // Tasks with outsource checked
+                cardsToDisplay = filteredTasks.filter(t => t.improvements.includes('outsource'));
+                // Order by annual hours descending
+                cardsToDisplay.sort((a, b) => {
+                    const hA = performCoreCalculations(a).annualHours;
+                    const hB = performCoreCalculations(b).annualHours;
+                    return hB - hA;
+                });
+            }
+
+            if (cardsToDisplay.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12 text-slate-400 text-xs">
+                        <i class="fa-regular fa-folder-open text-3xl mb-2 text-slate-300 block"></i>
+                        لا توجد خدمات مطابقة للمواصفات في هذا التبويب والمستوى المختار حالياً.
+                    </div>
+                `;
+                return;
+            }
+
+            cardsToDisplay.forEach(item => {
+                const calcs = performCoreCalculations(item);
+                const card = document.createElement('div');
+                
+                let cardColor = "border-rose-100 hover:border-rose-400 bg-rose-50/10";
+                let topTag = `<span class="bg-rose-100 text-rose-800 text-[9px] font-black px-2.5 py-1 rounded-full"><i class="fa-solid fa-triangle-exclamation"></i> هدر تشغيلي مرتفع</span>`;
+                let dynamicMetric = `
+                    <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-100">
+                        <span class="text-slate-400 font-bold">الهدر التشغيلي السنوي:</span>
+                        <span class="font-extrabold text-rose-600">${Math.round(calcs.annualCost).toLocaleString('ar-EG')} ريال</span>
+                    </div>
+                `;
+
+                if (state.activeGroup === 'revenue') {
+                    cardColor = "border-emerald-100 hover:border-emerald-400 bg-emerald-50/10";
+                    topTag = `<span class="bg-emerald-100 text-emerald-800 text-[9px] font-black px-2.5 py-1 rounded-full"><i class="fa-solid fa-wallet"></i> فرصة تسييل ذكية</span>`;
+                    dynamicMetric = `
+                        <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-100">
+                            <span class="text-slate-400 font-bold">العائد المتوقع (رسم 50 ريال):</span>
+                            <span class="font-extrabold text-emerald-700">${Math.round(calcs.potentialRevenue).toLocaleString('ar-EG')} ريال</span>
+                        </div>
+                    `;
+                } else if (state.activeGroup === 'outsource') {
+                    cardColor = "border-amber-100 hover:border-amber-400 bg-amber-50/10";
+                    topTag = `<span class="bg-amber-100 text-amber-800 text-[9px] font-black px-2.5 py-1 rounded-full"><i class="fa-solid fa-people-carry-box"></i> مقترح إسناد ميداني</span>`;
+                    dynamicMetric = `
+                        <div class="flex justify-between items-center text-xs pt-2 border-t border-slate-100">
+                            <span class="text-slate-400 font-bold">الوقت المتبذل سنوياً:</span>
+                            <span class="font-extrabold text-amber-700">${Math.round(calcs.annualHours).toLocaleString('ar-EG')} ساعة عمل</span>
+                        </div>
+                    `;
+                }
+
+                let autoStatusText = "يدوي";
+                if (item.auto === 'partial') autoStatusText = "جزئي";
+                if (item.auto === 'yes') autoStatusText = "مؤتمت";
+
+                card.className = `p-5 bg-white border rounded-2xl sfda-card-shadow transition duration-200 flex flex-col justify-between ${cardColor}`;
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[9px] text-slate-400 font-bold"><i class="fa-solid fa-table"></i> ${item.table}</span>
+                            ${topTag}
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-xs font-black text-slate-800 line-clamp-2" title="${item.name}">${item.name}</h4>
+                            <p class="text-[10px] text-slate-400 font-semibold mt-1 flex items-center gap-1">
+                                <i class="fa-solid fa-sitemap"></i> ${item.unit} | ${item.sector}
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 text-[10px] bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            <div>
+                                <span class="text-slate-400">حالة الأتمتة:</span>
+                                <span class="font-bold text-slate-700 block">${autoStatusText}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-400">التكرار السنوي:</span>
+                                <span class="font-bold text-slate-700 block">${calcs.annualVolume.toLocaleString('ar-EG')} معاملة</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 space-y-3">
+                        ${dynamicMetric}
+                        <div class="flex justify-end pt-1">
+                            <button onclick="deleteTask('${item.id}')" class="text-[10px] text-rose-500 hover:text-rose-700 hover:underline transition font-bold">
+                                <i class="fa-solid fa-trash-can"></i> حذف المهمة
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Delete individual task
+        function deleteTask(id) {
+            state.tasks = state.tasks.filter(t => t.id !== id);
+            saveTasksToLocal();
+            applyFiltersAndRefresh();
+            showToast("تمت إزالة الخدمة بنجاح من قائمة الورشة.", "🗑️");
+        }
+
+        // Build beautiful interactive graphs
+        function renderCharts() {
+            const filteredTasks = getFilteredTasks();
+
+            // 1. Data Calculation for Chart 1 (Automation pie chart)
+            let countNo = 0;
+            let countPartial = 0;
+            let countYes = 0;
+
+            filteredTasks.forEach(t => {
+                if (t.auto === 'no') countNo++;
+                else if (t.auto === 'partial') countPartial++;
+                else if (t.auto === 'yes') countYes++;
+            });
+
+            // Destroy previous instance to avoid visual overlay bugs
+            if (automationChartInstance) {
+                automationChartInstance.destroy();
+            }
+
+            const ctxAuto = document.getElementById('chart-automation').getContext('2d');
+            automationChartInstance = new Chart(ctxAuto, {
+                type: 'doughnut',
+                data: {
+                    labels: ['غير مؤتمتة', 'مؤتمتة جزئياً', 'مؤتمتة بالكامل'],
+                    datasets: [{
+                        data: [countNo, countPartial, countYes],
+                        backgroundColor: ['#f43f5e', '#f59e0b', '#006C35'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Cairo', size: 9, weight: 'bold' },
+                                boxWidth: 10
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'مستويات الأتمتة الحالية للخدمات',
+                            font: { family: 'Cairo', size: 11, weight: '900' },
+                            color: '#1E293B'
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            // 2. Data Calculation for Chart 2 (Improvement options bar chart)
+            let countAPI = 0;
+            let countAI = 0;
+            let countOutsource = 0;
+
+            filteredTasks.forEach(t => {
+                if (t.improvements.includes('api')) countAPI++;
+                if (t.improvements.includes('ai')) countAI++;
+                if (t.improvements.includes('outsource')) countOutsource++;
+            });
+
+            if (improvementsChartInstance) {
+                improvementsChartInstance.destroy();
+            }
+
+            const ctxImp = document.getElementById('chart-improvements').getContext('2d');
+            improvementsChartInstance = new Chart(ctxImp, {
+                type: 'bar',
+                data: {
+                    labels: ['الربط التقني API', 'الذكاء الاصطناعي AI', 'إسناد لطرف ثالث'],
+                    datasets: [{
+                        label: 'عدد المقترحات والحلول المأمولة',
+                        data: [countAPI, countAI, countOutsource],
+                        backgroundColor: ['#C5A059', '#3b82f6', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: 'فرص التطوير والاستثمار الموصى بها',
+                            font: { family: 'Cairo', size: 11, weight: '900' },
+                            color: '#1E293B'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f1f1f1' },
+                            ticks: { font: { family: 'Cairo', size: 9 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Cairo', size: 9, weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Export To CSV
+        function exportAllToCSV() {
+            if (state.tasks.length === 0) {
+                showToast("لا توجد بيانات مهام حالية لتصديرها!", "⚠️");
+                return;
+            }
+
+            let csvContent = "\uFEFF"; // Arabic language BOM support
+            csvContent += "الرقم,الطاولة,الوحدة التنظيمية,القطاع المعني,اسم الخدمة,حالة الأتمتة,المقابل المالي الحالي,التكرار السنوي,الوقت (ساعة),التكلفة السنوية الحالية,العائد السنوي الحالي,العائد المتوقع المستهدف\n";
+
+            state.tasks.forEach((t, index) => {
+                const calcs = performCoreCalculations(t);
+                let autoText = "يدوي";
+                if (t.auto === 'partial') autoText = "جزئي";
+                if (t.auto === 'yes') autoText = "مؤتمت";
+
+                const feeVal = t.hasFee === 'yes' ? t.feeVal : 0;
+                
+                csvContent += `"${index + 1}","${t.table}","${t.unit}","${t.sector}","${t.name}","${autoText}","${feeVal}","${calcs.annualVolume}","${t.timeVal}","${calcs.annualCost}","${calcs.annualRevenue}","${calcs.potentialRevenue}"\n`;
+            });
+
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", `تقرير_ميثاق_ورشة_هندسة_المهام_SFDA_2026.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast("تم تصدير وتحميل تقرير الورشة بصيغة Excel (CSV) بنجاح!", "📊");
+        }
+
+        // Export To Markdown Report
+        function exportAllToMarkdown() {
+            if (state.tasks.length === 0) {
+                showToast("لا توجد بيانات لتصدير ميثاق الورشة!", "⚠️");
+                return;
+            }
+
+            let mdText = `# 📊 ميثاق وتقرير ورشة عمل هندسة وتسييل المهام الرقابية - SFDA\n`;
+            mdText += `*تاريخ الجلسة والتحليل: ${new Date().toLocaleDateString('ar-EG')}*\n\n`;
+            
+            mdText += `| الرقم | الطاولة | الخدمة الرقابية | القطاع | التكرار السنوي | الهدر السنوي (ريال) | مسار التطوير المقترح | الاسترداد المالي |\n`;
+            mdText += `| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n`;
+
+            state.tasks.forEach((t, index) => {
+                const calcs = performCoreCalculations(t);
+                let impLabel = "إعادة هندسة الإجراء";
+                if (t.improvements.includes('api')) impLabel = "ربط الـ API";
+                if (t.improvements.includes('ai')) impLabel = "الذكاء الاصطناعي AI";
+                if (t.improvements.includes('outsource')) impLabel = "تفويض طرف ثالث";
+
+                let recLabel = t.hasFee === 'no' ? "عجز مالي كامل" : (calcs.annualRevenue >= calcs.annualCost ? "تغطية ممتازة" : "عجز مالي جزئي");
+
+                mdText += `| ${index + 1} | ${t.table} | ${t.name} | ${t.sector} | ${calcs.annualVolume.toLocaleString('ar-EG')} | ${Math.round(calcs.annualCost).toLocaleString('ar-EG')} ريال | ${impLabel} | ${recLabel} |\n`;
+            });
+
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = mdText;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            showToast("تم نسخ تقرير الأنشطة والميثاق بصيغة Markdown بنجاح! يمكنك لصقها الآن في ملفات التخطيط.", "📋");
+        }
+    </script>
+</body>
+</html>
